@@ -1,6 +1,6 @@
 import React from "react";
-import { popularProducts } from "../data";
-import Product from "./Product";
+import { popularProducts } from "../../data";
+import Product from "../Product/Product";
 import styles from "./Products.module.css";
 
 const Products = () => {

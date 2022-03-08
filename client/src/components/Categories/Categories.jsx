@@ -1,6 +1,6 @@
-import Category from "./Category";
+import Category from "../Category/Category";
 import styles from "./Categories.module.css";
-import { categories } from "../data";
+import { categories } from "../../data";
 
 const Categories = () => {
   return (
