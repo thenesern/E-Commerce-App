@@ -30,6 +30,7 @@ const Slider = () => {
         {sliderItems.map((slide) => (
           <div
             className={styles.slide}
+            key={slide.id}
             style={{ backgroundColor: `#${slide.bg}` }}
           >
             <div className={styles["image-container"]}>
