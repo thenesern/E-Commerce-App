@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Navbar.module.css";
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import { Badge } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -15,16 +16,24 @@ const Navbar = () => {
           </div>
         </div>
         <div className={styles.center}>
-          <h1>Logo</h1>
+          <Link to="/" className={styles.link}>
+            <h1>Logo</h1>
+          </Link>
         </div>
         <div className={styles.right}>
-          <div className={styles["menu-item"]}>Sign Up</div>
-          <div className={styles["menu-item"]}>Sign In</div>
-          <div className={styles["menu-item"]}>
-            <Badge badgeContent={4} color="primary">
-              <ShoppingCartOutlined />
-            </Badge>
-          </div>
+          <Link to="register" className={styles["menu-item"]}>
+            Sign Up
+          </Link>
+          <Link to="login" className={styles["menu-item"]}>
+            Sign In
+          </Link>
+          {false && (
+            <div className={styles["menu-item"]}>
+              <Badge badgeContent={0} color="primary">
+                <ShoppingCartOutlined />
+              </Badge>
+            </div>
+          )}
         </div>
       </div>
     </div>

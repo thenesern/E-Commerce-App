@@ -4,6 +4,7 @@ import styles from "./Slider.module.css";
 import sliderImage from "../../assets/slider-image.png";
 import { useState } from "react";
 import { sliderItems } from "../../data";
+import { Link } from "react-router-dom";
 
 const Slider = () => {
   const [slideIndex, setSlideIndex] = useState(0);
@@ -34,12 +35,14 @@ const Slider = () => {
             style={{ backgroundColor: `#${slide.bg}` }}
           >
             <div className={styles["image-container"]}>
-              <img className={styles.image} src={sliderImage} alt="" />
+              <img className={styles.image} src={sliderImage} alt="Model" />
             </div>
             <div className={styles["slider-container"]}>
               <h1 className={styles["slider-header"]}>{slide.title}</h1>
               <p className={styles["slider-description"]}>{slide.desc}</p>
-              <button className={styles["slider-button"]}>Lorem</button>
+              <Link to="/products">
+                <button className={styles.button}>SHOP NOW</button>
+              </Link>
             </div>
           </div>
         ))}

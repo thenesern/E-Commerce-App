@@ -26,8 +26,8 @@
 .title {
   color: white;
   margin-bottom: 20px;
-  backdrop-filter: contrast(50%);
   padding: 0 1rem;
+  background: gray;
 }
 
 .button {

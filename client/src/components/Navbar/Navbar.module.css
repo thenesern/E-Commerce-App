@@ -41,6 +41,7 @@
 .input {
   border: none;
   outline: none;
+  padding: 4px;
 }
 
 .logo {
@@ -48,12 +49,20 @@
 }
 
 .menu-item {
-  font-size: 14px;
+  font-size: 16px;
   cursor: pointer;
   margin-left: 1rem;
+  text-decoration: none;
+  font-weight: 500;
+  color: black;
 }
 
 .search {
   color: gray;
   font-size: 16px;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
 }

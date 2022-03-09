@@ -9,6 +9,7 @@ import {
   Twitter,
 } from "@material-ui/icons";
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "./Footer.module.css";
 
 const Footer = () => {
@@ -40,8 +41,16 @@ const Footer = () => {
       <div className={styles.center}>
         <h3 className={styles.title}>Pages</h3>
         <ul className={styles.list}>
-          <li className={styles["list-item"]}>Home</li>
-          <li className={styles["list-item"]}>Cart</li>
+          <li className={styles["list-item"]}>
+            <Link to="/" className={styles.link}>
+              Home
+            </Link>
+          </li>
+          <li className={styles["list-item"]}>
+            <Link to="/cart" className={styles.link}>
+              Cart
+            </Link>
+          </li>
           <li className={styles["list-item"]}>Woman Fashion</li>
           <li className={styles["list-item"]}>Man Fashion</li>
           <li className={styles["list-item"]}>Accessories</li>

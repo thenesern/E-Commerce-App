@@ -1,62 +1,79 @@
 import React from "react";
 import styles from "./Register.module.css";
+import { Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import { TextField } from "@material-ui/core";
+import { FormControlLabel } from "@material-ui/core";
+import { Checkbox } from "@material-ui/core";
 
 const Register = () => {
   return (
     <div className={styles.container}>
+      <Link to="/" className={styles.closeLink}>
+        <Button variant="text" color="error" className={styles.closeBtn}>
+          X
+        </Button>
+      </Link>
       <div className={styles.wrapper}>
         <h1 className={styles.title}>Sign Up</h1>
         <p className={styles.signin}>
-          Do you have already an account? <a href="/">Sign In</a>{" "}
+          Already have an account?{" "}
+          <Link to="/login" className={styles["signIn-link"]}>
+            Sign In
+          </Link>
         </p>
-        <form action="" className={styles.form}>
+        <form className={styles.form}>
           <div className={styles.pairs}>
             <div className={styles.pair}>
-              <label htmlFor="">First Name</label>
-              <input
+              <TextField
                 type="text"
-                placeholder="First Name"
+                label="First Name"
+                color="secondary"
                 className={styles.input}
               />
             </div>
             <div className={styles.pair}>
-              <label htmlFor="">Last Name</label>
-              <input
+              <TextField
                 type="text"
-                placeholder="Last Name"
+                label="Last Name"
+                color="secondary"
                 className={styles.input}
               />
             </div>
           </div>
           <div className={styles.pair}>
-            <label htmlFor="">Email</label>
-            <input type="email" placeholder="Email" className={styles.input} />
+            <TextField
+              type="email"
+              label="E-Mail"
+              color="secondary"
+              className={styles["input_email"]}
+            />
           </div>
           <div className={styles.pairs}>
             <div className={styles.pair}>
-              <label htmlFor="">Password</label>
-              <input
+              <TextField
                 type="password"
-                placeholder="Password"
+                label="Password"
+                color="secondary"
                 className={styles.input}
               />
             </div>
             <div className={styles.pair}>
-              <label htmlFor="">Password Confirm</label>
-              <input
+              <TextField
                 type="password"
-                placeholder="Password Confirm"
+                label="Password Confirm"
+                color="secondary"
                 className={styles.input}
               />
             </div>
           </div>
-          <div className={styles["aggreement-container"]}>
-            <input type="checkbox" />
-            <p className={styles.aggreement}>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
-              deserunt ex quidem fuga iste unde similique, repellat atque nam
-              temporibus ipsam quaerat animi ut! Vitae sunt sit aliquid eligendi
-              consequatur!
+          <div className={styles.aggreement}>
+            <Checkbox />
+            <p>
+              I accept the{" "}
+              <Link to="/" className={styles.privacy}>
+                Privacy Statement
+              </Link>
             </p>
           </div>
           <button className={styles.button}>Sign Up</button>
