@@ -5,6 +5,9 @@ import dotenv from "dotenv";
 import cors from "cors";
 import auth from "./routes/auth.js";
 import userRoute from "./routes/user.js";
+import productRoute from "./routes/product.js";
+import cartRoute from "./routes/cart.js";
+import orderRoute from "./routes/order.js";
 
 const app = express();
 dotenv.config();

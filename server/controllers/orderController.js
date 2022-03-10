@@ -1,4 +1,3 @@
-import express from "express";
 import Order from "../models/Order.js";
 
 export const createOrder = async (req, res) => {
@@ -22,6 +21,15 @@ export const updateOrder = async (req, res) => {
       { new: true }
     );
     res.status(200).json(updatedOrder);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
+export const deleteOrder = async (req, res) => {
+  try {
+    await Order.findByIdAndDelete(req.params.id);
+    res.status(200).json("Order has been deleted...");
   } catch (err) {
     res.status(500).json(err);
   }

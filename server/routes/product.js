@@ -1,4 +1,4 @@
-import { verifyTokenAndAdmin } from "./verifyToken";
+import { verifyTokenAndAdmin } from "./verifyToken.js";
 import {
   createProduct,
   updateProduct,
@@ -6,8 +6,8 @@ import {
   getProduct,
   getAllProducts,
 } from "../controllers/productController.js";
-
-const router = require("express").Router();
+import express from "express";
+const router = express.Router();
 
 // Create Product
 router.post("/", verifyTokenAndAdmin, createProduct);

@@ -1,6 +1,10 @@
 import express from "express";
 const router = express.Router();
-import { verifyTokenAndAuth, verifyTokenAndAdmin } from "./verifyToken.js";
+import {
+  verifyToken,
+  verifyTokenAndAuth,
+  verifyTokenAndAdmin,
+} from "./verifyToken.js";
 import {
   createCart,
   updateCart,
@@ -13,13 +17,13 @@ import {
 router.post("/", verifyToken, createCart);
 
 // Update the Cart
-router.put("/:id", verifyTokenAndAuthorization, updateCart);
+router.put("/:id", verifyTokenAndAuth, updateCart);
 
 // Delete the Cart
-router.delete("/:id", verifyTokenAndAuthorization, deleteCart);
+router.delete("/:id", verifyTokenAndAuth, deleteCart);
 
 // Get the Cart
-router.get("/find/:userId", verifyTokenAndAuthorization, getCart);
+router.get("/find/:userId", verifyTokenAndAuth, getCart);
 
 // Get All the Carts
 
