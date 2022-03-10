@@ -85,12 +85,12 @@ export const deleteUser = async (req, res) => {
 };
 
 export const getAllUsers = async (req, res) => {
-  const query = res.query.new;
+  const query = req.query.new;
   try {
     const users = query
-      ? await User.find().limit(5).sort({ _id: -1 })
+      ? await User.find().sort({ _id: -1 }).limit(5)
       : await User.find();
-    res.status(200).json(others);
+    res.status(200).json(users);
   } catch (err) {
     res.status(500).json(err);
   }
