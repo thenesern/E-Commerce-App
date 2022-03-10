@@ -52,7 +52,7 @@ export const login = async (req, res) => {
   }
 };
 
-export const update = async (req, res) => {
+export const updateUser = async (req, res) => {
   if (req.body.password) {
     req.body.password = CryptoJS.AES.encrypt(
       req.body.password,
@@ -69,6 +69,28 @@ export const update = async (req, res) => {
       { new: true }
     );
     res.status(200).json(updatedUser);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
+export const deleteUser = async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+    const { password, ...others } = user._doc;
+    res.status(200).json(others);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
+export const getAllUsers = async (req, res) => {
+  const query = res.query.new;
+  try {
+    const users = query
+      ? await User.find().limit(5).sort({ _id: -1 })
+      : await User.find();
+    res.status(200).json(others);
   } catch (err) {
     res.status(500).json(err);
   }
