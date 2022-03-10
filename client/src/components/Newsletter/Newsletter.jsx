@@ -1,5 +1,7 @@
-import { Send } from "@material-ui/icons";
+// Dependencies
 import React from "react";
+import { Send } from "@material-ui/icons";
+// Styles
 import styles from "./Newsletter.module.css";
 
 const Newsletter = () => {

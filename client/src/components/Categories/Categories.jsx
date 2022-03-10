@@ -1,5 +1,9 @@
-import Category from "../Category/Category";
+// Dependencies
+import React from "react";
+// Styles
 import styles from "./Categories.module.css";
+// Components
+import Category from "../Category/Category";
 import { categories } from "../../data";
 
 const Categories = () => {

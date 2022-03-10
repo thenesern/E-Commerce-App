@@ -1,10 +1,13 @@
-import { ArrowLeftOutlined, ArrowRightOutlined } from "@material-ui/icons";
+// Dependencies
 import React from "react";
+import { ArrowLeftOutlined, ArrowRightOutlined } from "@material-ui/icons";
+import { Link } from "react-router-dom";
+import { sliderItems } from "../../data";
+// Hooks
+import { useState } from "react";
+// Styles
 import styles from "./Slider.module.css";
 import sliderImage from "../../assets/slider-image.png";
-import { useState } from "react";
-import { sliderItems } from "../../data";
-import { Link } from "react-router-dom";
 
 const Slider = () => {
   const [slideIndex, setSlideIndex] = useState(0);

@@ -1,7 +1,10 @@
+// Dependencies
 import React from "react";
 import { popularProducts } from "../../data";
-import Product from "../Product/Product";
+// Styles
 import styles from "./Products.module.css";
+// Components
+import Product from "../Product/Product";
 
 const Products = () => {
   return (

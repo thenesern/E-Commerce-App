@@ -1,9 +1,11 @@
+// Dependencies
 import React from "react";
+// Styles
+import styles from "./ProductList.module.css";
 import Announcement from "../components/Announcement/Announcement";
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
 import Products from "../components/Products/Products";
-import styles from "./ProductList.module.css";
 
 const ProductList = () => {
   return (

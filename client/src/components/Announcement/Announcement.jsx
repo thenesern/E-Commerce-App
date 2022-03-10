@@ -1,4 +1,6 @@
+// Dependencies
 import React from "react";
+// Styles
 import styles from "./Announcement.module.css";
 
 const Announcement = () => {

@@ -1,8 +1,11 @@
+// Dependencies
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// Styles
+import "./index.css";
+// Components
+import App from "./App";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Product from "./pages/ProductDetails";

@@ -1,8 +1,11 @@
-import { Add, Remove } from "@material-ui/icons";
+// Dependencies
 import React from "react";
+import { Add, Remove } from "@material-ui/icons";
+// Styles
+import styles from "./Cart.module.css";
+// Components
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
-import styles from "./Cart.module.css";
 
 const Cart = () => {
   return (

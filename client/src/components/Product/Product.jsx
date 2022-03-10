@@ -1,10 +1,13 @@
+// Dependencies
+import React from "react";
 import {
   FavoriteBorderOutlined,
   SearchOutlined,
   ShoppingCartOutlined,
 } from "@material-ui/icons";
-import React from "react";
+// Hooks
 import { useState } from "react";
+// Styles
 import styles from "./Product.module.css";
 
 const Product = ({ item }) => {

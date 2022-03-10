@@ -1,8 +1,10 @@
+// Dependencies
 import React from "react";
-import styles from "./Navbar.module.css";
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import { Badge } from "@material-ui/core";
 import { Link } from "react-router-dom";
+// Styles
+import styles from "./Navbar.module.css";
 
 const Navbar = () => {
   return (

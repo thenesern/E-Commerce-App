@@ -1,7 +1,9 @@
-import { Add, Remove } from "@material-ui/icons";
+// Dependencies
 import React from "react";
+import { Add, Remove } from "@material-ui/icons";
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
+// Styles
 import styles from "./ProductDetails.module.css";
 
 const Product = () => {

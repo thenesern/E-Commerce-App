@@ -1,10 +1,11 @@
+// Dependencies
 import React from "react";
-import styles from "./Register.module.css";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { TextField } from "@material-ui/core";
-import { FormControlLabel } from "@material-ui/core";
 import { Checkbox } from "@material-ui/core";
+// Styles
+import styles from "./Register.module.css";
 
 const Register = () => {
   return (
