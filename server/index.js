@@ -32,6 +32,7 @@ app.use("/api/auth", auth);
 app.use("/api/users", userRoute);
 app.use("/api/products", productRoute);
 app.use("/api/carts", cartRoute);
+app.use("/api/orders", orderRoute);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
