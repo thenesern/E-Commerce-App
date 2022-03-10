@@ -30,6 +30,7 @@ mongoose
 
 app.use("/api/auth", auth);
 app.use("/api/users", userRoute);
+app.use("/api/products", productRoute);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
