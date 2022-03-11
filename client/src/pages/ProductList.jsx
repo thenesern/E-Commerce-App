@@ -40,7 +40,9 @@ const ProductList = () => {
     <div className={styles.container}>
       <Announcement />
       <Navbar />
-      <h1 className={styles.title}>{category}</h1>
+      <h1 className={styles.title}>
+        {category.replace(category[0], category[0].toUpperCase())}
+      </h1>
       <div className={styles["filter-container"]}>
         <div className={styles.filter}>
           <span className={styles["filter-text"]}>Filter Products:</span>

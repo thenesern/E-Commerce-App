@@ -3,53 +3,94 @@ import React from "react";
 import { Add, Remove } from "@material-ui/icons";
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 // Styles
 import styles from "./ProductDetails.module.css";
+import { useState } from "react";
+import { publicRequest } from "../requestMethods";
 
 const Product = () => {
+  const [productSize, setProductSize] = useState();
+  const [productColor, setProductColor] = useState();
+  const location = useLocation();
+  const id = location.pathname.split("/")[2];
+  const [product, setProduct] = useState({});
+  const [color, setColor] = useState();
+  const [quantity, setQuantity] = useState(1);
+
+  const quantityHandler = (type) => {
+    if (type === "dec") {
+      quantity > 1 && setQuantity(+quantity - 1);
+    } else {
+      setQuantity(+quantity + 1);
+    }
+  };
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const res = await publicRequest.get("/products/find/" + id);
+        setProduct(res.data);
+      } catch (err) {
+        console.log(err.message);
+      }
+    };
+    getProduct();
+  }, [id]);
+
+  const cartHandler = () => {};
+
   return (
     <div>
       <Navbar />
       <div className={styles.wrapper}>
         <div className={styles["image-container"]}>
-          <img src="" alt="" className={styles.image} />
+          <img src={product.image} alt="" className={styles.image} />
         </div>
         <div className={styles["info-container"]}>
-          <h1 className={styles.title}>Lorem</h1>
-          <p className={styles.description}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
-            ducimus numquam quisquam minus officia. Quisquam necessitatibus
-            quia, eligendi error ab modi animi quasi totam doloremque mollitia,
-            asperiores enim consequuntur possimus?
-          </p>
-          <span className={styles.price}>Price</span>
+          <h1 className={styles.title}>{product.title}</h1>
+          <p className={styles.description}>{product.description}</p>
+          <span className={styles.price}>Price: $ {product.price}</span>
           <div className={styles["filter-container"]}>
             <div className={styles.filter}>
               <h3 className={styles["filter-title"]}>Color</h3>
               <div className={styles.filters}>
-                <div className={styles["filter-color"]} />
-                <div className={styles["filter-color"]} />
-                <div className={styles["filter-color"]} />
+                {product.color?.map((c) => (
+                  <div
+                    color={(c) => setColor(c)}
+                    key={c}
+                    onClick={() => setProductColor(c)}
+                    style={{ backgroundColor: `${color}` }}
+                    className={styles["filter-color"]}
+                  />
+                ))}
               </div>
             </div>
             <div className={styles.filter}>
               <h3 className={styles["filter-title"]}>Size</h3>
               <select>
-                <option className={styles["filter-size"]}>XS</option>
-                <option className={styles["filter-size"]}>S</option>
-                <option className={styles["filter-size"]}>M</option>
-                <option className={styles["filter-size"]}>L</option>
-                <option className={styles["filter-size"]}>XL</option>
+                {product.size?.map((s) => (
+                  <option
+                    onClick={() => setProductSize(s)}
+                    key={s}
+                    className={styles["filter-size"]}
+                  >
+                    {s}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
           <div className={styles["add-container"]}>
             <div className={styles["amount-container"]}>
-              <Remove />
-              <span className={styles.amount}>1</span>
-              <Add />
+              <Remove onClick={() => quantityHandler("dec")} />
+              <span className={styles.amount}>{+quantity}</span>
+              <Add onClick={() => quantityHandler("inc")} />
             </div>
-            <button className={styles.button}>ADD TO CART</button>
+            <button onClick={cartHandler} className={styles.button}>
+              ADD TO CART
+            </button>
           </div>
         </div>
       </div>

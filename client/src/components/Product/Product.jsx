@@ -9,9 +9,11 @@ import {
 import { useState } from "react";
 // Styles
 import styles from "./Product.module.css";
+import { Link } from "react-router-dom";
 
 const Product = ({ item }) => {
   const [isShown, setIsShown] = useState(false);
+
   return (
     <div
       className={styles.container}
@@ -28,9 +30,11 @@ const Product = ({ item }) => {
           <div className={styles.icon}>
             <ShoppingCartOutlined />
           </div>
-          <div className={styles.icon}>
-            <SearchOutlined />
-          </div>
+          <Link to={`/product/${item._id}`}>
+            <div className={styles.icon}>
+              <SearchOutlined />
+            </div>
+          </Link>
           <div className={styles.icon}>
             <FavoriteBorderOutlined />
           </div>
