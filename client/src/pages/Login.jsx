@@ -3,10 +3,23 @@ import React from "react";
 import { TextField } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 // Styles
 import styles from "./Login.module.css";
+import { login } from "../redux/apiCalls";
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { isFetching, error } = useSelector((state) => state.user);
+
+  const loginHandler = (e) => {
+    e.preventDefault();
+    login(dispatch, { email, password });
+  };
+
   return (
     <div className={styles.container}>
       <Link to="/" className={styles.closeLink}>
@@ -27,15 +40,29 @@ const Login = () => {
             type="email"
             label="E-Mail"
             color="secondary"
+            onChange={(e) => setEmail(e.target.value)}
             className={styles.input}
           />
           <TextField
             type="password"
             label="Password"
+            onChange={(e) => setPassword(e.target.value)}
             color="secondary"
             className={styles.input}
           />
-          <button className={styles.button}>Log In</button>
+          <button
+            disabled={isFetching}
+            className={styles.button}
+            onClick={loginHandler}
+          >
+            Log In
+          </button>
+          {error && (
+            <span style={{ textAlign: "center", color: "red" }}>
+              Something went wrong
+            </span>
+          )}
+
           <Link to="/" className={styles.forget}>
             Have you forgetten your password?
           </Link>

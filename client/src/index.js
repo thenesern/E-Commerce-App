@@ -1,43 +1,19 @@
 // Dependencies
 import React from "react";
 import ReactDOM from "react-dom";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 // Styles
 import "./index.css";
 // Components
 import App from "./App";
-import Cart from "./pages/Cart";
-import Login from "./pages/Login";
-import Product from "./pages/ProductDetails";
-import ProductList from "./pages/ProductList";
-import Register from "./pages/Register";
-import { Provider } from "react-redux";
-import store from "./redux/store";
-import Success from "./pages/succes";
-const user = false;
+import { store, persistor } from "./redux/store";
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
-      <Routes>
-        <Route path="/" element={<App />} exact />
-        <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
-        <Route
-          path="/register"
-          element={user ? <Navigate to="/" /> : <Register />}
-        />
-        <Route path="/products/:category" element={<ProductList />} />
-        <Route path="/product/:id" element={<Product />} />
-        <Route path="/success" element={<Success />} />
-
-        <Route path="/cart" element={<Cart />} />
-      </Routes>
-    </Router>
+    <PersistGate loading={null} persistor={persistor}>
+      <App />
+    </PersistGate>
   </Provider>,
   document.getElementById("root")
 );

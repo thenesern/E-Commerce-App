@@ -24,7 +24,7 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
-    const user = await User.findOne({ username: req.body.username });
+    const user = await User.findOne({ email: req.body.email });
     !user && res.status(401).json("Wrong cretentials");
     const hashedPass = CryptoJS.AES.decrypt(
       user.password,

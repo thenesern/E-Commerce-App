@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import styles from "./ProductDetails.module.css";
 import { useState } from "react";
 import { publicRequest } from "../requestMethods";
-import { addProduct } from "../redux/cartRedux";
+import { addProduct } from "../redux/cartSlice";
 import { useDispatch } from "react-redux";
 
 const Product = () => {

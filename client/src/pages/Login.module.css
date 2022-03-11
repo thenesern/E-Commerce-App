@@ -43,6 +43,10 @@
   cursor: pointer;
 }
 
+.button:disabled {
+  color: green;
+  cursor: not-allowed;
+}
 .signup {
   font-size: 14px;
   text-align: center;
