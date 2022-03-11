@@ -56,10 +56,12 @@
 }
 
 .product-color {
+  display: flex;
+  flex-direction: row;
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: black;
+  border: 1px solid gray;
 }
 
 .price-details {

@@ -3,10 +3,13 @@ import React from "react";
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import { Badge } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 // Styles
 import styles from "./Navbar.module.css";
 
 const Navbar = () => {
+  const quantity = useSelector((state) => state.cart.quantity);
+
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -29,12 +32,14 @@ const Navbar = () => {
           <Link to="login" className={styles["menu-item"]}>
             Sign In
           </Link>
-          {false && (
-            <div className={styles["menu-item"]}>
-              <Badge badgeContent={0} color="primary">
-                <ShoppingCartOutlined />
-              </Badge>
-            </div>
+          {true && (
+            <Link to="/cart">
+              <div className={styles["menu-item"]}>
+                <Badge badgeContent={quantity} color="primary">
+                  <ShoppingCartOutlined />
+                </Badge>
+              </div>
+            </Link>
           )}
         </div>
       </div>

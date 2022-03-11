@@ -9,6 +9,8 @@ import { useEffect } from "react";
 import styles from "./ProductDetails.module.css";
 import { useState } from "react";
 import { publicRequest } from "../requestMethods";
+import { addProduct } from "../redux/cartRedux";
+import { useDispatch } from "react-redux";
 
 const Product = () => {
   const [productSize, setProductSize] = useState();
@@ -18,6 +20,7 @@ const Product = () => {
   const [product, setProduct] = useState({});
   const [color, setColor] = useState();
   const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
 
   const quantityHandler = (type) => {
     if (type === "dec") {
@@ -39,7 +42,9 @@ const Product = () => {
     getProduct();
   }, [id]);
 
-  const cartHandler = () => {};
+  const cartHandler = () => {
+    dispatch(addProduct({ ...product, quantity, productColor, productSize }));
+  };
 
   return (
     <div>
