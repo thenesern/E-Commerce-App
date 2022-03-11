@@ -10,7 +10,7 @@
 .wrapper {
   padding: 2rem;
   width: 24rem;
-  height: 24rem;
+  height: 20rem;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
@@ -29,29 +29,7 @@
 
 .input {
   flex: 1;
-  width: 11rem;
-  margin: 6px 0;
-}
-
-.input_email {
-  flex: 1;
   width: 100%;
-  margin: 6px 0;
-}
-
-.pairs {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.pair {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
 }
 
 .button {
@@ -65,10 +43,9 @@
   cursor: pointer;
 }
 
-.signin {
-  text-align: center;
-  font-size: 14px;
-  margin: 16px 0;
+.button:disabled {
+  color: green;
+  cursor: not-allowed;
 }
 
 .closeBtn {
@@ -82,29 +59,4 @@
   position: absolute;
   text-decoration: none;
   color: black;
-}
-
-.signIn-link {
-  text-decoration: none;
-  font-weight: 600;
-  color: black;
-}
-
-.aggreement {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  font-size: 14px;
-  margin: 10px 0;
-}
-
-.privacy {
-  text-decoration: none;
-  font-weight: 600;
-  color: black;
-}
-
-.button:disabled {
-  color: green;
-  cursor: not-allowed;
 }

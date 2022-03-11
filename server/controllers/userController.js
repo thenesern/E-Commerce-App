@@ -4,7 +4,8 @@ import jwt from "jsonwebtoken";
 
 export const register = async (req, res) => {
   const newUser = new User({
-    username: req.body.username,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
     email: req.body.email,
     password: CryptoJS.AES.encrypt(
       req.body.password,
@@ -40,7 +41,7 @@ export const login = async (req, res) => {
         isAdmin: user.isAdmin,
       },
       process.env.PASS_SEC,
-      { expiresIn: "3h" }
+      { expiresIn: "1d" }
     );
     const { password, ...others } = user._doc;
     res.status(200).json({ others, accesToken });

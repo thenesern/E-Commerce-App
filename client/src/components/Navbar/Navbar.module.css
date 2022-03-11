@@ -1,9 +1,9 @@
 .container {
-  height: 60px;
+  height: 100%;
 }
 
 .wrapper {
-  padding: 10px 20px;
+  padding: 10px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -65,4 +65,26 @@
 .link {
   text-decoration: none;
   color: black;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  color: #252422;
+}
+
+.username {
+  font-size: 12px;
+  color: #252422;
+}
+
+.menu-link {
+  text-decoration: none;
+  color: #252422;
+  text-transform: none;
 }

@@ -4,16 +4,15 @@ import { TextField } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { login } from "../redux/apiCalls";
+import { useDispatch } from "react-redux";
 // Styles
-import styles from "./Login.module.css";
+import styles from "./Admin.module.css";
+import { login } from "../redux/apiCalls";
 
 const Login = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { isFetching, error } = useSelector((state) => state.user);
 
   const loginHandler = (e) => {
     e.preventDefault();
@@ -28,13 +27,8 @@ const Login = () => {
         </Button>
       </Link>
       <div className={styles.wrapper}>
-        <h1 className={styles.title}>Log In</h1>
-        <p className={styles.signup}>
-          Don't Have an Account?{" "}
-          <Link to="/register" className={styles.signupLink}>
-            Sign Up
-          </Link>
-        </p>
+        <h1 className={styles.title}>Admin</h1>
+
         <form className={styles.form}>
           <TextField
             type="email"
@@ -50,22 +44,9 @@ const Login = () => {
             color="secondary"
             className={styles.input}
           />
-          <button
-            disabled={isFetching}
-            className={styles.button}
-            onClick={loginHandler}
-          >
+          <button className={styles.button} onClick={loginHandler}>
             Log In
           </button>
-          {error && (
-            <span style={{ textAlign: "center", color: "red" }}>
-              Something went wrong
-            </span>
-          )}
-
-          <Link to="/" className={styles.forget}>
-            Have you forgetten your password?
-          </Link>
         </form>
       </div>
     </div>

@@ -38,7 +38,6 @@ const ProductList = () => {
   };
   return (
     <div className={styles.container}>
-      <Announcement />
       <Navbar />
       <h1 className={styles.title}>
         {category.replace(category[0], category[0].toUpperCase())}

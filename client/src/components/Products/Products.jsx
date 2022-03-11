@@ -1,6 +1,5 @@
 // Dependencies
 import React from "react";
-import { popularProducts } from "../../data";
 // Styles
 import styles from "./Products.module.css";
 // Components

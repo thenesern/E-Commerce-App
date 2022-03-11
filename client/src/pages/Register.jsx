@@ -4,10 +4,24 @@ import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { TextField } from "@material-ui/core";
 import { Checkbox } from "@material-ui/core";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "../redux/apiCalls";
 // Styles
 import styles from "./Register.module.css";
 
 const Register = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { isFetching, error } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const registeringHandler = (e) => {
+    e.preventDefault();
+    register(dispatch, { firstName, lastName, email, password });
+  };
+
   return (
     <div className={styles.container}>
       <Link to="/" className={styles.closeLink}>
@@ -31,6 +45,7 @@ const Register = () => {
                 label="First Name"
                 color="secondary"
                 className={styles.input}
+                onChange={(e) => setFirstName(e.target.value)}
               />
             </div>
             <div className={styles.pair}>
@@ -39,6 +54,7 @@ const Register = () => {
                 label="Last Name"
                 color="secondary"
                 className={styles.input}
+                onChange={(e) => setLastName(e.target.value)}
               />
             </div>
           </div>
@@ -48,6 +64,7 @@ const Register = () => {
               label="E-Mail"
               color="secondary"
               className={styles["input_email"]}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className={styles.pairs}>
@@ -57,6 +74,7 @@ const Register = () => {
                 label="Password"
                 color="secondary"
                 className={styles.input}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div className={styles.pair}>
@@ -77,7 +95,18 @@ const Register = () => {
               </Link>
             </p>
           </div>
-          <button className={styles.button}>Sign Up</button>
+          <button
+            disabled={isFetching}
+            className={styles.button}
+            onClick={registeringHandler}
+          >
+            Sign Up
+          </button>
+          {error && (
+            <span style={{ textAlign: "center", color: "red" }}>
+              Something went wrong
+            </span>
+          )}
         </form>
       </div>
     </div>
