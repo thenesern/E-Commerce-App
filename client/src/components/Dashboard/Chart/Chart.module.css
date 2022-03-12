@@ -1,0 +1,10 @@
+.chart {
+  flex: 4;
+  padding: 10px;
+  color: gray;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.title {
+  margin-bottom: 20px;
+}

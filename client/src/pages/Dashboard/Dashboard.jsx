@@ -1,8 +1,10 @@
 import React from "react";
+import Featured from "../../components/Dashboard/Featured/Featured";
 import Navbar from "../../components/Navbar/Navbar";
 import SideBar from "../../components/SideBar/SideBar";
-import Widget from "../../components/Widget/Widget";
+import Widget from "../../components/Dashboard/Widget/Widget";
 import styles from "./Dashboard.module.css";
+import Chart from "../../components/Dashboard/Chart/Chart";
 
 const Dashboard = () => {
   return (
@@ -15,6 +17,10 @@ const Dashboard = () => {
             <Widget type="users" />
             <Widget type="orders" />
             <Widget type="earnings" />
+          </div>
+          <div className={styles.charts}>
+            <Featured />
+            <Chart />
           </div>
         </div>
       </div>
