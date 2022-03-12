@@ -18,14 +18,10 @@ import styles from "./Navbar.module.css";
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.currentUser?.others._id);
-  const admin = useSelector((state) => state.user.currentUser?.others.isAdmin);
-  const firstName = useSelector(
-    (state) => state.user.currentUser?.others.firstName
-  );
-  const lastName = useSelector(
-    (state) => state.user.currentUser?.others.lastName
-  );
+  const user = useSelector((state) => state.user.currentUser?.token);
+  const admin = useSelector((state) => state.user.currentUser?.isAdmin);
+  const firstName = useSelector((state) => state.user.currentUser?.firstName);
+  const lastName = useSelector((state) => state.user.currentUser?.lastName);
   const quantity = useSelector((state) => state.cart.quantity);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -39,7 +35,6 @@ const Navbar = () => {
     setAnchorEl(null);
     dispatch(logout());
   };
-  console.log(admin);
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>

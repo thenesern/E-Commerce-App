@@ -15,11 +15,18 @@ const Register = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
   const { isFetching, error } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const registeringHandler = (e) => {
     e.preventDefault();
-    register(dispatch, { firstName, lastName, email, password });
+    register(dispatch, {
+      firstName,
+      lastName,
+      email,
+      password,
+      passwordConfirm,
+    });
   };
 
   return (
@@ -83,6 +90,7 @@ const Register = () => {
                 label="Password Confirm"
                 color="secondary"
                 className={styles.input}
+                onChange={(e) => setPasswordConfirm(e.target.value)}
               />
             </div>
           </div>

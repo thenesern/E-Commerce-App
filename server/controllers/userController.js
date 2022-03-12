@@ -26,7 +26,10 @@ export const register = async (req, res) => {
     res.status(201).json({
       status: "success",
       token,
-      user: newUser,
+      isAdmin: req.body.isAdmin,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
     });
   } catch (err) {
     res.status(409).json({
@@ -38,17 +41,23 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
-    const user = await User.findOne({ email: req.body.email });
-    !user && res.status(401).json("There is no user with that email");
+    const user = await User.findOne({ email: req.body.email }).select(
+      "+password"
+    );
+    if (!user) {
+      return res.status(401).json("There is no user with that email");
+    }
+
     const hashedPass = CryptoJS.AES.decrypt(
       user.password,
       process.env.PASS_SEC
     );
     const revealedPassword = hashedPass.toString(CryptoJS.enc.Utf8);
-    revealedPassword !== req.body.password &&
-      res.status(401).json("Wrong password");
+    if (revealedPassword !== req.body.password) {
+      return res.status(401).json("Wrong password");
+    }
 
-    const accesToken = jwt.sign(
+    const token = jwt.sign(
       {
         id: user._id,
         isAdmin: user.isAdmin,
@@ -56,12 +65,14 @@ export const login = async (req, res) => {
       process.env.PASS_SEC,
       { expiresIn: "1d" }
     );
-    const { password, ...userData } = user._doc;
 
     res.status(200).json({
       status: "success",
-      userData,
-      accesToken,
+      token,
+      isAdmin: user.isAdmin,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
     });
   } catch (err) {
     res.status(409).json({
