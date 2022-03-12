@@ -7,14 +7,27 @@ export const register = async (req, res) => {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
-    password: CryptoJS.AES.encrypt(
-      req.body.password,
-      process.env.PASS_SEC
-    ).toString(),
+    password: req.body.password,
+    passwordConfirm: req.body.passwordConfirm,
   });
+
+  const token = jwt.sign(
+    {
+      id: newUser._id,
+    },
+    process.env.PASS_SEC,
+    {
+      expiresIn: "1d",
+    }
+  );
+
   try {
     await newUser.save();
-    res.status(201).json(newUser);
+    res.status(201).json({
+      status: "success",
+      token,
+      user: newUser,
+    });
   } catch (err) {
     res.status(409).json({
       status: "Failed",
@@ -26,14 +39,14 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
-    !user && res.status(401).json("Wrong cretentials");
+    !user && res.status(401).json("There is no user with that email");
     const hashedPass = CryptoJS.AES.decrypt(
       user.password,
       process.env.PASS_SEC
     );
-    const revealPassword = hashedPass.toString(CryptoJS.enc.Utf8);
-    revealPassword !== req.body.password &&
-      res.status(401).json("Wrong credentials");
+    const revealedPassword = hashedPass.toString(CryptoJS.enc.Utf8);
+    revealedPassword !== req.body.password &&
+      res.status(401).json("Wrong password");
 
     const accesToken = jwt.sign(
       {
@@ -43,8 +56,13 @@ export const login = async (req, res) => {
       process.env.PASS_SEC,
       { expiresIn: "1d" }
     );
-    const { password, ...others } = user._doc;
-    res.status(200).json({ others, accesToken });
+    const { password, ...userData } = user._doc;
+
+    res.status(200).json({
+      status: "success",
+      userData,
+      accesToken,
+    });
   } catch (err) {
     res.status(409).json({
       status: "Failed",

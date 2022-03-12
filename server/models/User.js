@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import validator from "validator";
+import CryptoJS from "crypto-js";
 
 const userSchema = new mongoose.Schema(
   {
@@ -14,11 +16,23 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
+      lowercase: true,
+      validate: [validator.isEmail, "Invalid email"],
     },
     password: {
       type: String,
       required: true,
     },
+    passwordConfirm: {
+      type: String,
+      required: true,
+      validate: {
+        validator: function (el) {
+          return el === this.password;
+        },
+      },
+    },
+
     isAdmin: {
       type: Boolean,
       default: false,
@@ -26,6 +40,15 @@ const userSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
+  this.password = await CryptoJS.AES.encrypt(
+    this.password,
+    process.env.PASS_SEC
+  ).toString();
+  this.passwordConfirm = undefined;
+});
 
 const User = mongoose.model("User", userSchema);
 
