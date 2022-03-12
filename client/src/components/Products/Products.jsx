@@ -55,10 +55,10 @@ const Products = ({ category, color, size, filters, sort }) => {
   return (
     <div className={styles.container}>
       {category
-        ? filteredProducts.map((item) => <Product item={item} key={item.id} />)
+        ? filteredProducts.map((item) => <Product item={item} key={item._id} />)
         : products
             .slice(0, 8)
-            .map((item) => <Product item={item} key={item.id} />)}
+            .map((item) => <Product item={item} key={item._id} />)}
     </div>
   );
 };

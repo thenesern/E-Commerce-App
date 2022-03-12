@@ -9,6 +9,10 @@
 
 .filter {
   margin: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 .filter-text {
@@ -20,6 +24,4 @@
 .select {
   padding: 10px;
   margin-right: 20px;
-}
-.option {
 }

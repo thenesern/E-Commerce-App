@@ -14,7 +14,7 @@ import "./App.css";
 // Components
 import Home from "./pages/Home";
 import Product from "./pages/ProductDetails";
-import ProductList from "./pages/ProductList";
+import Products from "./pages/ProductList";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Success from "./pages/Success";
@@ -32,6 +32,7 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="/" element={<Home />} />
+        <Route path="/products" element={<Products />} />
         {isUser && <Route path="/success" element={<Success />} />}
         {isAdmin && (
           <>
@@ -49,7 +50,7 @@ function App() {
           path="/register"
           element={isUser ? <Navigate to="/" /> : <Register />}
         />
-        <Route path="/products/:category" element={<ProductList />} />
+        <Route path="/products/:category" element={<Products />} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>

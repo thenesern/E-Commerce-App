@@ -40,12 +40,12 @@ const ProductList = () => {
     <div className={styles.container}>
       <Navbar />
       <h1 className={styles.title}>
-        {category.replace(category[0], category[0].toUpperCase())}
+        {category?.replace(category[0], category[0].toUpperCase())}
       </h1>
       <div className={styles["filter-container"]}>
         <div className={styles.filter}>
           <span className={styles["filter-text"]}>Filter Products:</span>
-          <FormControl fullWidth>
+          <FormControl style={{ minWidth: "6rem" }}>
             <InputLabel id="demo-simple-select-label">Colors</InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -59,7 +59,7 @@ const ProductList = () => {
               <MenuItem value="gray">Gray</MenuItem>
             </Select>
           </FormControl>
-          <FormControl fullWidth>
+          <FormControl style={{ minWidth: "6rem" }}>
             <InputLabel id="demo-simple-select-label">Size</InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -78,7 +78,7 @@ const ProductList = () => {
         </div>
         <div className={styles.filter}>
           <span className={styles["filter-text"]}>Sort Products:</span>
-          <FormControl fullWidth>
+          <FormControl style={{ minWidth: "6rem" }}>
             <InputLabel id="demo-simple-select-label">Sort</InputLabel>
             <Select
               labelId="demo-simple-select-label"
