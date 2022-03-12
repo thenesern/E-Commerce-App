@@ -1,4 +1,4 @@
-import style from "./components/Dashboard/UserTable/UserTable.module.css";
+import styles from "./components/Dashboard/UserTable/UserTable.module.css";
 export const userColumns = [
   { field: "id", headerName: "ID", width: 70 },
   {
@@ -7,8 +7,8 @@ export const userColumns = [
     width: 230,
     renderCell: (params) => {
       return (
-        <div className={style.cellWithImg}>
-          <img className={style.cellImg} src={params.row.img} alt="avatar" />
+        <div className={styles.cellWithImg}>
+          <img className={styles.cellImg} src={params.row.img} alt="avatar" />
           {params.row.username}
         </div>
       );
@@ -42,8 +42,8 @@ export const productColumns = [
     width: 230,
     renderCell: (params) => {
       return (
-        <div className={style.cellWithImg}>
-          <img className={style.cellImg} src={params.row.img} alt="avatar" />
+        <div className={styles.cellWithImg}>
+          <img className={styles.cellImg} src={params.row.img} alt="avatar" />
           {params.row.name}
         </div>
       );

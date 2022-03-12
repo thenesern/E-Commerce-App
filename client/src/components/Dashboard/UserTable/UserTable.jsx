@@ -1,8 +1,9 @@
-import style from "./UserTable.module.css";
+import styles from "./UserTable.module.css";
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../../../datatablesource";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { AccountBox, AddBox, Delete } from "@material-ui/icons";
 
 const Datatable = () => {
   const [data, setData] = useState(userRows);
@@ -18,34 +19,32 @@ const Datatable = () => {
       width: 200,
       renderCell: (params) => {
         return (
-          <div className={style.cellAction}>
+          <div className={styles.cellAction}>
             <Link
               to="/dashboard/users/:userId"
               style={{ textDecoration: "none" }}
             >
-              <div className={style.viewButton}>View</div>
+              <button className={styles.viewButton}>
+                <AccountBox className={styles.viewIcon} />
+                View
+              </button>
             </Link>
-            <div
-              className={style.deleteButton}
+            <button
+              className={styles.deleteButton}
               onClick={() => handleDelete(params.row.id)}
             >
-              Delete
-            </div>
+              <Delete className={styles.deleteIcon} />
+            </button>
           </div>
         );
       },
     },
   ];
   return (
-    <div className={style.datatable}>
-      <div className={style.datatableTitle}>
-        Add New User
-        <Link to="/users/new" className={style.link}>
-          Add New
-        </Link>
-      </div>
+    <div className={styles.datatable}>
+      <div className={styles.datatableTitle}>User List</div>
       <DataGrid
-        className={style.datagrid}
+        className={styles.datagrid}
         rows={data}
         columns={userColumns.concat(actionColumn)}
         pageSize={9}
