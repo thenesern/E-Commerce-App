@@ -1,17 +1,14 @@
 .widgets,
 .charts {
   display: flex;
-  padding: 20px;
+  padding: 2rem 2rem 0 2rem;
   gap: 20px;
-}
-
-.charts {
-  padding: 5px 20px;
 }
 
 .wrapper {
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 0.1fr 1fr;
+  margin: 1rem 0;
 }
 
 .listContainer {
@@ -24,4 +21,8 @@
   font-weight: 500;
   color: gray;
   margin-bottom: 15px;
+}
+
+.container {
+  margin-top: 1rem;
 }

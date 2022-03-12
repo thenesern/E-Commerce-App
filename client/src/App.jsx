@@ -12,7 +12,6 @@ import { useSelector } from "react-redux";
 import "./App.css";
 
 // Components
-import AdminProductList from "./pages/Dashboard/ProductList/ProductList";
 import Home from "./pages/Home";
 import Product from "./pages/ProductDetails";
 import ProductList from "./pages/ProductList";
@@ -23,6 +22,7 @@ import Cart from "./pages/Cart";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import List from "./pages/Dashboard/Users/Users";
 import User from "./pages/Dashboard/User/User";
+import DashboardProducts from "./pages/Dashboard/Products/Products";
 
 function App() {
   const isUser = useSelector((state) => state.user.currentUser?.token);
@@ -36,7 +36,7 @@ function App() {
         {isAdmin && (
           <>
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/dashboard/products" element={<AdminProductList />} />
+            <Route path="/dashboard/products" element={<DashboardProducts />} />
             <Route path="/dashboard/users/:userId" element={<User />} />
             <Route path="/dashboard/users" element={<List />} />
           </>

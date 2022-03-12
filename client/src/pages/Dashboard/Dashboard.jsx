@@ -13,7 +13,7 @@ const Dashboard = () => {
       <Navbar />
       <div className={styles.wrapper}>
         <SideBar />
-        <div>
+        <div className={styles.container}>
           <div className={styles.widgets}>
             <Widget type="users" />
             <Widget type="orders" />

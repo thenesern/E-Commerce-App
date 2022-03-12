@@ -1,4 +1,4 @@
-import style from "./DataTable.module.css";
+import style from "./UserTable.module.css";
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../../../datatablesource";
 import { Link } from "react-router-dom";
@@ -19,7 +19,10 @@ const Datatable = () => {
       renderCell: (params) => {
         return (
           <div className={style.cellAction}>
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
+            <Link
+              to="/dashboard/users/:userId"
+              style={{ textDecoration: "none" }}
+            >
               <div className={style.viewButton}>View</div>
             </Link>
             <div

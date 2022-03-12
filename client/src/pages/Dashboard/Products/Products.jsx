@@ -1,10 +1,9 @@
-import React from "react";
+import styles from "./Products.module.css";
 import Navbar from "../../../components/Navbar/Navbar";
 import SideBar from "../../../components/Dashboard/SideBar/SideBar";
-import styles from "./List.module.css";
-import DataTable from "../../../components/Dashboard/DataTable/DataTable";
+import DataTable from "../../../components/Dashboard/ProductTable/ProductTable";
 
-const List = () => {
+const Products = () => {
   return (
     <div>
       <Navbar />
@@ -15,5 +14,4 @@ const List = () => {
     </div>
   );
 };
-
-export default List;
+export default Products;
