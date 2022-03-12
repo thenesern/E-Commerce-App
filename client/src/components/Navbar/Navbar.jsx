@@ -66,13 +66,14 @@ const Navbar = () => {
             </>
           )}
           {user && (
-            <div>
+            <>
               <Button
                 id="fade-button"
                 aria-controls={open ? "fade-menu" : undefined}
                 aria-haspopup="true"
                 aria-expanded={open ? "true" : undefined}
                 onClick={handleClick}
+                style={{ display: "flex", gap: "6px" }}
               >
                 <AccountCircleRounded />
                 <h6 className={styles.username}>
@@ -91,7 +92,8 @@ const Navbar = () => {
                 onClose={handleClose}
                 TransitionComponent={Fade}
               >
-                <Link to="/" className={styles["menu-link"]}>
+                <Link to="/dashboard" className={styles["menu-link"]}>
+                  <MenuItem className={styles["menu-link"]}>Dashboard</MenuItem>
                   <MenuItem
                     onClick={logoutHandler}
                     className={styles["menu-link"]}
@@ -100,7 +102,7 @@ const Navbar = () => {
                   </MenuItem>
                 </Link>
               </Menu>
-            </div>
+            </>
           )}
           <Link to="/cart">
             <div className={styles["menu-item"]}>
