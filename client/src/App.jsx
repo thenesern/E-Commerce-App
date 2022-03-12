@@ -21,6 +21,7 @@ import Register from "./pages/Register";
 import Success from "./pages/Success";
 import Cart from "./pages/Cart";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import List from "./pages/Dashboard/List/List";
 
 function App() {
   const user = useSelector((state) => state.user.currentUser);
@@ -34,7 +35,8 @@ function App() {
         {admin && (
           <>
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/admin/products" element={<AdminProductList />} />
+            <Route path="/dashboard/products" element={<AdminProductList />} />
+            <Route path="/dashboard/list" element={<List />} />
           </>
         )}
         <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />

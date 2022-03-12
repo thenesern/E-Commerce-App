@@ -1,7 +1,7 @@
 import React from "react";
 import Featured from "../../components/Dashboard/Featured/Featured";
 import Navbar from "../../components/Navbar/Navbar";
-import SideBar from "../../components/SideBar/SideBar";
+import SideBar from "../../components/Dashboard/SideBar/SideBar";
 import Widget from "../../components/Dashboard/Widget/Widget";
 import styles from "./Dashboard.module.css";
 import Chart from "../../components/Dashboard/Chart/Chart";
@@ -9,7 +9,7 @@ import List from "../../components/Dashboard/Table/Table";
 
 const Dashboard = () => {
   return (
-    <div className={styles.container}>
+    <div>
       <Navbar />
       <div className={styles.wrapper}>
         <SideBar />

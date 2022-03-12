@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteProduct, getProducts } from "../../../redux/apiCalls";
 import Navbar from "../../../components/Navbar/Navbar";
-import SideBar from "../../../components/SideBar/SideBar";
+import SideBar from "../../../components/Dashboard/SideBar/SideBar";
 
 export default function ProductList() {
   const dispatch = useDispatch();
