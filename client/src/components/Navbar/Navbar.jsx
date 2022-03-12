@@ -19,6 +19,7 @@ import styles from "./Navbar.module.css";
 const Navbar = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.currentUser?.others._id);
+  const admin = useSelector((state) => state.user.currentUser?.others.isAdmin);
   const firstName = useSelector(
     (state) => state.user.currentUser?.others.firstName
   );
@@ -38,7 +39,7 @@ const Navbar = () => {
     setAnchorEl(null);
     dispatch(logout());
   };
-
+  console.log(admin);
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -92,8 +93,14 @@ const Navbar = () => {
                 onClose={handleClose}
                 TransitionComponent={Fade}
               >
-                <Link to="/dashboard" className={styles["menu-link"]}>
-                  <MenuItem className={styles["menu-link"]}>Dashboard</MenuItem>
+                {admin && (
+                  <Link to="/dashboard" className={styles["menu-link"]}>
+                    <MenuItem className={styles["menu-link"]}>
+                      Dashboard
+                    </MenuItem>
+                  </Link>
+                )}
+                <Link to="/" className={styles["menu-link"]}>
                   <MenuItem
                     onClick={logoutHandler}
                     className={styles["menu-link"]}
