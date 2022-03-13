@@ -8,7 +8,7 @@ import { deleteUser, getUsers } from "../../../redux/apiCalls";
 
 const UserTable = () => {
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.user.users);
+  const users = useSelector((state) => state.users.users);
 
   useEffect(() => {
     getUsers(dispatch);
@@ -29,6 +29,19 @@ const UserTable = () => {
           <div className={styles.userListItem}>
             <img className={styles.userListImg} src={params.row.image} alt="" />
             {params.row.firstName + " " + params.row.lastName}
+          </div>
+        );
+      },
+    },
+    {
+      field: "createdAt",
+      headerName: "Signed Up At",
+      width: 200,
+      renderCell: (params) => {
+        return (
+          <div className={styles.userListItem}>
+            <img className={styles.userListImg} src={params.row.image} alt="" />
+            {params.row.createdAt.split("T", 1)}
           </div>
         );
       },

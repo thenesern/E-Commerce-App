@@ -18,13 +18,14 @@ import styles from "./Navbar.module.css";
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.currentUser?.token);
-  const admin = useSelector((state) => state.user.currentUser?.isAdmin);
-  const firstName = useSelector((state) => state.user.currentUser?.firstName);
-  const lastName = useSelector((state) => state.user.currentUser?.lastName);
+  const user = useSelector((state) => state.auth.currentUser?.token);
+  const admin = useSelector((state) => state.auth.currentUser?.isAdmin);
+  const firstName = useSelector((state) => state.auth.currentUser?.firstName);
+  const lastName = useSelector((state) => state.auth.currentUser?.lastName);
   const quantity = useSelector((state) => state.cart.quantity);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };

@@ -16,7 +16,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const { isFetching, error } = useSelector((state) => state.user);
+  const { isFetching, error } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const registeringHandler = (e) => {
     e.preventDefault();

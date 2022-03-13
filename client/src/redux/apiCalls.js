@@ -35,20 +35,20 @@ import {
   updateUserSuccess,
 } from "./userSlice";
 
-export const login = async (dispatch, user) => {
+export const login = async (dispatch, auth) => {
   dispatch(loginStart());
   try {
-    const res = await publicRequest.post("/auth/login", user);
+    const res = await publicRequest.post("/auth/login", auth);
     dispatch(loginSuccess(res.data));
   } catch (err) {
     dispatch(loginFailure());
   }
 };
 
-export const register = async (dispatch, user) => {
+export const register = async (dispatch, auth) => {
   dispatch(registerStart());
   try {
-    const res = await publicRequest.post("/auth/register", user);
+    const res = await publicRequest.post("/auth/register", auth);
     dispatch(registerSuccess(res.data));
   } catch (err) {
     dispatch(registerFailure());

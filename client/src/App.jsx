@@ -25,8 +25,8 @@ import User from "./pages/Dashboard/User/User";
 import DashboardProducts from "./pages/Dashboard/Products/Products";
 
 function App() {
-  const isUser = useSelector((state) => state.user.currentUser?.token);
-  const isAdmin = useSelector((state) => state.user.currentUser?.isAdmin);
+  const isUser = useSelector((state) => state.auth.currentUser?.token);
+  const isAdmin = useSelector((state) => state.auth.currentUser?.isAdmin);
 
   return (
     <Router>
