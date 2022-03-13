@@ -1,25 +1,50 @@
 import styles from "./UserTable.module.css";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../../datatablesource";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { AccountBox, AddBox, Delete } from "@material-ui/icons";
+import { AccountBox, Delete } from "@material-ui/icons";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { deleteUser, getUsers } from "../../../redux/apiCalls";
 
-const Datatable = () => {
-  const [data, setData] = useState(userRows);
+const UserTable = () => {
+  const dispatch = useDispatch();
+  const users = useSelector((state) => state.user.users);
+
+  useEffect(() => {
+    getUsers(dispatch);
+  }, [dispatch]);
 
   const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+    deleteUser(id, dispatch);
   };
 
-  const actionColumn = [
+  const columns = [
+    { field: "_id", headerName: "ID", width: 220 },
     {
-      field: "action",
-      headerName: "Action",
+      field: "user",
+      headerName: "User",
       width: 200,
       renderCell: (params) => {
         return (
-          <div className={styles.cellAction}>
+          <div className={styles.userListItem}>
+            <img className={styles.userListImg} src={params.row.image} alt="" />
+            {params.row.firstName + " " + params.row.lastName}
+          </div>
+        );
+      },
+    },
+    {
+      field: "email",
+      headerName: "Email",
+      width: 160,
+    },
+    {
+      field: "action",
+      headerName: "Action",
+      width: 150,
+      renderCell: (params) => {
+        return (
+          <div className={styles.actions}>
             <Link
               to="/dashboard/users/:userId"
               style={{ textDecoration: "none" }}
@@ -44,15 +69,16 @@ const Datatable = () => {
     <div className={styles.datatable}>
       <div className={styles.datatableTitle}>User List</div>
       <DataGrid
+        rows={users}
         className={styles.datagrid}
-        rows={data}
-        columns={userColumns.concat(actionColumn)}
+        columns={columns}
+        getRowId={(row) => row._id}
         pageSize={9}
-        rowsPerPageOptions={[9]}
+        disableSelectionOnClick
         checkboxSelection
       />
     </div>
   );
 };
 
-export default Datatable;
+export default UserTable;

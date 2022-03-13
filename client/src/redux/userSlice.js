@@ -1,35 +1,67 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const userSlice = createSlice({
+export const userSlice = createSlice({
   name: "user",
   initialState: {
-    currentUser: null,
+    users: [],
     isFetching: false,
     error: false,
   },
   reducers: {
-    loginStart: (state) => {
+    //GET ALL
+    getUserStart: (state) => {
       state.isFetching = true;
+      state.error = false;
     },
-    loginSuccess: (state, action) => {
+    getUserSuccess: (state, action) => {
       state.isFetching = false;
-      state.currentUser = action.payload;
+      state.users = action.payload;
     },
-    loginFailure: (state) => {
+    getUserFailure: (state) => {
       state.isFetching = false;
       state.error = true;
     },
-    logout: (state) => {
-      state.currentUser = null;
-    },
-    registerStart: (state) => {
+    //DELETE
+    deleteUserStart: (state) => {
       state.isFetching = true;
+      state.error = false;
     },
-    registerSuccess: (state, action) => {
+    deleteUserSuccess: (state, action) => {
       state.isFetching = false;
-      state.currentUser = action.payload;
+      state.users.splice(
+        state.users.findIndex((item) => item._id === action.payload),
+        1
+      );
     },
-    registerFailure: (state) => {
+    deleteUserFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
+    //UPDATE
+    updateUserStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    updateUserSuccess: (state, action) => {
+      state.isFetching = false;
+      state.users[
+        state.users.findIndex((item) => item._id === action.payload.id)
+      ] = action.payload.User;
+    },
+    updateUserFailure: (state) => {
+      state.isFetching = false;
+      state.error = true;
+    },
+    //UPDATE
+    addUserStart: (state) => {
+      state.isFetching = true;
+      state.error = false;
+    },
+    addUserSuccess: (state, action) => {
+      state.isFetching = false;
+      state.users.push(action.payload);
+    },
+    addUserFailure: (state) => {
       state.isFetching = false;
       state.error = true;
     },
@@ -37,12 +69,18 @@ const userSlice = createSlice({
 });
 
 export const {
-  loginStart,
-  loginSuccess,
-  loginFailure,
-  logout,
-  registerStart,
-  registerSuccess,
-  registerFailure,
+  getUserStart,
+  getUserSuccess,
+  getUserFailure,
+  deleteUserStart,
+  deleteUserSuccess,
+  deleteUserFailure,
+  updateUserStart,
+  updateUserSuccess,
+  updateUserFailure,
+  addUserStart,
+  addUserSuccess,
+  addUserFailure,
 } = userSlice.actions;
+
 export default userSlice.reducer;

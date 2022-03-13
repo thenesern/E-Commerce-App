@@ -1,31 +1,61 @@
 import styles from "./ProductTable.module.css";
 import { DataGrid } from "@mui/x-data-grid";
-import { productColumns, productRows } from "../../../datatablesource";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { Inventory, Delete, OpenInNew } from "@material-ui/icons";
+import { Delete, StoreMallDirectory } from "@material-ui/icons";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { deleteProduct, getProducts } from "../../../redux/apiCalls";
 
-const Datatable = () => {
-  const [data, setData] = useState(productRows);
+const ProductTable = () => {
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.product.products);
+
+  useEffect(() => {
+    getProducts(dispatch);
+  }, [dispatch]);
 
   const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+    deleteProduct(id, dispatch);
   };
 
-  const actionColumn = [
+  const columns = [
+    { field: "_id", headerName: "ID", width: 220 },
     {
-      field: "action",
-      headerName: "Action",
+      field: "product",
+      headerName: "Product",
       width: 200,
       renderCell: (params) => {
         return (
-          <div className={styles.cellAction}>
+          <div className={styles.productListItem}>
+            <img
+              className={styles.productListImg}
+              src={params.row.image}
+              alt=""
+            />
+            {params.row.title}
+          </div>
+        );
+      },
+    },
+    { field: "inStock", headerName: "Stock", width: 200 },
+    {
+      field: "price",
+      headerName: "Price",
+      width: 160,
+    },
+    {
+      field: "action",
+      headerName: "Action",
+      width: 150,
+      renderCell: (params) => {
+        return (
+          <div className={styles.actions}>
             <Link
-              to="/dashboard/product/:productId"
+              to="/dashboard/users/:userId"
               style={{ textDecoration: "none" }}
             >
               <button className={styles.viewButton}>
-                <OpenInNew className={styles.viewIcon} />
+                <StoreMallDirectory className={styles.viewIcon} />
                 View
               </button>
             </Link>
@@ -44,15 +74,16 @@ const Datatable = () => {
     <div className={styles.datatable}>
       <div className={styles.datatableTitle}>Product List</div>
       <DataGrid
+        rows={products}
         className={styles.datagrid}
-        rows={data}
-        columns={productColumns.concat(actionColumn)}
+        columns={columns}
+        getRowId={(row) => row._id}
         pageSize={9}
-        rowsPerPageOptions={[9]}
+        disableSelectionOnClick
         checkboxSelection
       />
     </div>
   );
 };
 
-export default Datatable;
+export default ProductTable;

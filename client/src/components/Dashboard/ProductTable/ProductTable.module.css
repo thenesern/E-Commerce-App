@@ -13,36 +13,6 @@
   justify-content: space-between;
 }
 
-.link {
-  text-decoration: none;
-  color: green;
-  font-size: 16px;
-  font-weight: 400;
-  border: 1px solid green;
-  padding: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.cellWithImg {
-  display: flex;
-  align-items: center;
-}
-
-.cellImg {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-right: 20px;
-}
-
-.cellAction {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
 .viewButton {
   padding: 4px 6px;
   display: flex;
@@ -68,4 +38,28 @@
 
 .deleteIcon {
   color: #e63946;
+}
+
+.productList {
+  flex: 4;
+}
+
+.productListItem {
+  display: flex;
+  align-items: center;
+}
+
+.productListImg {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
 }

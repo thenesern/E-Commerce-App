@@ -12,7 +12,7 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
-import { logout } from "../../redux/userSlice";
+import { logout } from "../../redux/authSlice";
 // Styles
 import styles from "./Navbar.module.css";
 

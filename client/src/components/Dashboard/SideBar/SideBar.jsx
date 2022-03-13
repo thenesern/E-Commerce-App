@@ -1,7 +1,9 @@
 import {
   BarChartOutlined,
+  CallToAction,
   Group,
   Home,
+  LinearScale,
   ShoppingCartOutlined,
   StoreMallDirectory,
 } from "@material-ui/icons";
@@ -49,6 +51,21 @@ const SideBar = () => {
             <Link to="/dashboard/users" className={styles.link}>
               <Group color="primary" />
               Users
+            </Link>
+          </li>
+        </ul>
+        <h6 className={styles.header}>Main Menu</h6>
+        <ul className={styles.list}>
+          <li className={styles.li}>
+            <Link to="/dashboard/slider" className={styles.link}>
+              <LinearScale color="primary" />
+              Slider
+            </Link>
+          </li>
+          <li className={styles.li}>
+            <Link to="/dashboard/footer" className={styles.link}>
+              <CallToAction color="primary" />
+              Footer
             </Link>
           </li>
         </ul>

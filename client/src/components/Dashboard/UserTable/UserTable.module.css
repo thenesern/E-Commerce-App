@@ -69,3 +69,9 @@
 .deleteIcon {
   color: #e63946;
 }
+.actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
