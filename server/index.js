@@ -8,12 +8,36 @@ import userRoute from "./routes/user.js";
 import productRoute from "./routes/product.js";
 import cartRoute from "./routes/cart.js";
 import orderRoute from "./routes/order.js";
+import rateLimit from "express-rate-limit";
+import helmet from "helmet";
+import mongoSanitize from "express-mongo-sanitize";
+import xss from "xss-clean";
+import hpp from "hpp";
 
 const app = express();
 dotenv.config();
 
+// Limit requests from same API
+const limiter = rateLimit({
+  max: 100,
+  windowMs: 60 * 60 * 1000,
+  message: "Too many requests from this IP, please try again in an hour!",
+});
+app.use("/api", limiter);
+
+// Security for HTTP headers
+app.use(helmet());
+
+// Body parser, reading data from body into req.body
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
+
+// Data sanitization against NoSQL query injection attacks
+app.use(mongoSanitize());
+
+// Data sanitization against XSS injection attacks
+app.use(xss());
+
 app.use(express.json());
 
 app.get("/", (req, res) => {
