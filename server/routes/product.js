@@ -19,7 +19,7 @@ router.put("/:id", verifyTokenAndAdmin, updateProduct);
 router.delete("/:id", verifyTokenAndAdmin, deleteProduct);
 
 // Get the Product
-router.get("/find/:id", getProduct);
+router.get("/:id", getProduct);
 
 //GET ALL PRODUCTS
 router.get("/", getAllProducts);

@@ -1,7 +1,4 @@
-import Product from "../models/product.js";
-import express from "express";
-
-const router = express.Router();
+import Product from "../models/ProductModel.js";
 
 export const createProduct = async (req, res) => {
   const newProduct = new Product(req.body);
@@ -45,8 +42,20 @@ export const deleteProduct = async (req, res) => {
 // GET the Product
 export const getProduct = async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
-    res.status(200).json(product);
+    const product = await Product.findById(req.params.id).populate("reviews");
+    if (!product) {
+      return res.status(404).json({
+        status: "fail",
+        message: "No product found with that ID",
+      });
+    }
+    res.status(200).json({
+      status: "success",
+      data: {
+        product,
+        reviews: product.reviews,
+      },
+    });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -76,5 +85,3 @@ export const getAllProducts = async (req, res) => {
     res.status(500).json(err);
   }
 };
-
-export default router;
