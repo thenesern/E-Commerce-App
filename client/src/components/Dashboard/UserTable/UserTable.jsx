@@ -69,7 +69,7 @@ const UserTable = () => {
             </Link>
             <button
               className={styles.deleteButton}
-              onClick={() => handleDelete(params.row.id)}
+              onClick={() => handleDelete(params.row._id)}
             >
               <Delete className={styles.deleteIcon} />
             </button>
