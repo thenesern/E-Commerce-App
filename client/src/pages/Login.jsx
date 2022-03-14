@@ -14,7 +14,6 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { isFetching, error } = useSelector((state) => state.auth);
-
   const loginHandler = (e) => {
     e.preventDefault();
     login(dispatch, { email, password });

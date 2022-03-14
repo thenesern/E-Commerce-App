@@ -12,7 +12,6 @@ import rateLimit from "express-rate-limit";
 import helmet from "helmet";
 import mongoSanitize from "express-mongo-sanitize";
 import xss from "xss-clean";
-import hpp from "hpp";
 
 const app = express();
 dotenv.config();
