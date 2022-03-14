@@ -9,23 +9,45 @@ import { useDispatch, useSelector } from "react-redux";
 import { register } from "../redux/apiCalls";
 // Styles
 import styles from "./Register.module.css";
+import { useEffect } from "react";
 
 const Register = () => {
+  /*   const [rawFirstName, setRawFirstName] = useState("");
+  const [rawLastName, setRawLastName] = useState(""); */
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [signedIn, setSignedIn] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const { isFetching, error } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+
   const registeringHandler = (e) => {
     e.preventDefault();
+    setSignedIn(new Date().toLocaleString());
+
+    const lowerFirst = firstName.toLowerCase();
+    const betterFirst = lowerFirst.replace(
+      lowerFirst[0],
+      lowerFirst[0].toUpperCase()
+    );
+    setFirstName(betterFirst);
+
+    const lowerLast = lastName.toLowerCase();
+    const betterLast = lowerLast.replace(
+      lowerLast[0],
+      lowerLast[0].toUpperCase()
+    );
+    setLastName(betterLast);
+
     register(dispatch, {
       firstName,
       lastName,
       email,
       password,
       passwordConfirm,
+      signedIn,
     });
   };
 

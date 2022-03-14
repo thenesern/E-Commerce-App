@@ -10,6 +10,7 @@ export const register = async (req, res) => {
     email: req.body.email,
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,
+    signedIn: req.body.signedIn,
   });
 
   const token = jwt.sign(
@@ -31,6 +32,7 @@ export const register = async (req, res) => {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
+      signedIn: req.body.signedIn,
     });
   } catch (err) {
     res.status(409).json({
@@ -74,6 +76,7 @@ export const login = async (req, res) => {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
+      signedIn: user.signedIn,
     });
   } catch (err) {
     res.status(409).json({

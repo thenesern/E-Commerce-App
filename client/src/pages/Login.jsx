@@ -13,12 +13,13 @@ const Login = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [signedIn, setSignedIn] = useState("");
   const { isFetching, error } = useSelector((state) => state.auth);
   const loginHandler = (e) => {
     e.preventDefault();
-    login(dispatch, { email, password });
+    setSignedIn(new Date().toLocaleString());
+    login(dispatch, { email, password, signedIn });
   };
-
   return (
     <div className={styles.container}>
       <Link to="/" className={styles.closeLink}>
