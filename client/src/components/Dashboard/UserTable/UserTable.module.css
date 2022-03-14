@@ -1,16 +1,17 @@
 .datatable {
   padding: 0 20px;
+  height: 85vh;
 }
 
 .datatableTitle {
   width: 100%;
   font-size: 24px;
   color: gray;
-  margin-top: 10px;
   margin-bottom: 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-weight: 600;
 }
 
 .link {
@@ -22,25 +23,6 @@
   padding: 5px;
   border-radius: 5px;
   cursor: pointer;
-}
-
-.cellWithImg {
-  display: flex;
-  align-items: center;
-}
-
-.cellImg {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-right: 20px;
-}
-
-.cellAction {
-  display: flex;
-  align-items: center;
-  gap: 15px;
 }
 
 .viewButton {
@@ -74,4 +56,56 @@
   gap: 1rem;
   align-items: center;
   justify-content: center;
+}
+
+.delete {
+  padding: 10px 12px;
+  background-color: #e63946;
+  color: #eee;
+  border: none;
+  border-radius: 4px;
+  margin: 20px 4px 0 4px;
+  cursor: pointer;
+}
+
+.discard {
+  padding: 10px 12px;
+  background-color: #eee;
+  color: black;
+  border: 1px solid gray;
+  border-radius: 4px;
+  margin: 20px 4px 0 4px;
+  cursor: pointer;
+}
+
+.modalFooter {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.modalHeader {
+  padding: 1rem 1rem 10px 1rem;
+  font-weight: 600;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+}
+
+.modalBody {
+  padding: 10px 1rem 1rem 1rem;
+  color: #343a40;
+}
+.box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  border-radius: 4px;
+  height: 200px;
+  background-color: #eee;
+  padding: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 }

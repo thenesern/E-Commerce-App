@@ -6,7 +6,7 @@ import DataTable from "../../../components/Dashboard/UserTable/UserTable";
 
 const List = () => {
   return (
-    <div>
+    <div className={styles.container}>
       <Navbar />
       <div className={styles.listContainer}>
         <SideBar />
