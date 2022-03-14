@@ -2,6 +2,7 @@ import User from "../models/UserModel.js";
 import CryptoJS from "crypto-js";
 import crypto from "crypto";
 import jwt from "jsonwebtoken";
+import { deleteOne, getOne, updateOne } from "./handlerFactory.js";
 
 export const register = async (req, res) => {
   const newUser = new User({
@@ -86,37 +87,14 @@ export const login = async (req, res) => {
   }
 };
 
-export const updateUser = async (req, res) => {
-  if (req.body.password) {
-    req.body.password = CryptoJS.AES.encrypt(
-      req.body.password,
-      process.env.PASS_SEC
-    ).toString();
-  }
+// Get User
+export const getUser = getOne(User);
 
-  try {
-    const updatedUser = await User.findByIdAndUpdate(
-      req.params.id,
-      {
-        $set: req.body,
-      },
-      { new: true }
-    );
-    res.status(200).json(updatedUser);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-};
+// Update the User
+export const updateUser = updateOne(User);
 
-export const deleteUser = async (req, res) => {
-  try {
-    const user = await User.findByIdAndDelete(req.params.id);
-    const { password, ...others } = user._doc;
-    res.status(200).json(others);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-};
+// Delete the User
+export const deleteUser = deleteOne(User);
 
 export const getAllUsers = async (req, res) => {
   const query = req.query.new;
@@ -125,16 +103,6 @@ export const getAllUsers = async (req, res) => {
       ? await User.find().sort({ _id: -1 }).limit(5)
       : await User.find();
     res.status(200).json(users);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-};
-
-export const getUser = async (req, res) => {
-  try {
-    const user = await User.findById(req.params.id);
-    const { password, ...others } = user._doc;
-    res.status(200).json(others);
   } catch (err) {
     res.status(500).json(err);
   }

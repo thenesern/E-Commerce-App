@@ -16,7 +16,8 @@ router.patch("/:id", verifyTokenAndAuth, updateUser);
 router.delete("/:id", verifyTokenAndAuth, deleteUser);
 
 // Get User
-router.get("/find/:id", verifyTokenAndAdmin, getUser);
+// router.get("/:id", verifyTokenAndAdmin, getUser);
+router.get("/:id", getUser);
 
 // Get All the Users
 // router.get("/", verifyTokenAndAdmin, getAllUsers);

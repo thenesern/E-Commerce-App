@@ -1,4 +1,5 @@
 import Review from "../models/reviewModel.js";
+import { createOne, deleteOne, getOne, updateOne } from "./handlerFactory.js";
 
 export const getAllReviews = async (req, res, next) => {
   const reviews = await Review.find();
@@ -11,12 +12,20 @@ export const getAllReviews = async (req, res, next) => {
   });
 };
 
-export const createReview = async (req, res, next) => {
-  const newReview = await Review.create(req.body);
-  res.status(201).json({
-    status: "success",
-    data: {
-      review: newReview,
-    },
-  });
+export const setProductUserIds = (req, res, next) => {
+  if (!req.body.product) req.body.product = req.params.productId;
+  if (!req.body.user) req.body.user = req.user.id;
+  next();
 };
+
+// Get Review
+export const getReview = getOne(Review);
+
+// Create Review
+export const createReview = createOne(Review);
+
+// Update Review
+export const updateReview = updateOne(Review);
+
+// Delete Review
+export const deleteReview = deleteOne(Review);

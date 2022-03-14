@@ -16,7 +16,8 @@ router.post("/", verifyTokenAndAdmin, createProduct);
 router.put("/:id", verifyTokenAndAdmin, updateProduct);
 
 // Delete the Product
-router.delete("/:id", verifyTokenAndAdmin, deleteProduct);
+// router.delete("/:id", verifyTokenAndAdmin, deleteProduct);
+router.delete("/:id", deleteProduct);
 
 // Get the Product
 router.get("/:id", getProduct);

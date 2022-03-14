@@ -1,43 +1,14 @@
 import Product from "../models/ProductModel.js";
+import { createOne, deleteOne, updateOne } from "./handlerFactory.js";
 
-export const createProduct = async (req, res) => {
-  const newProduct = new Product(req.body);
-
-  try {
-    const savedProduct = await newProduct.save();
-    res.status(200).json(savedProduct);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-};
+// Create Product
+export const createProduct = createOne(Product);
 
 // Update the Product
-export const updateProduct = async (req, res) => {
-  try {
-    const updatedProduct = await Product.findByIdAndUpdate(
-      req.params.id,
-      {
-        $set: req.body,
-      },
-      { new: true }
-    );
-    res.status(200).json(updatedProduct);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-};
+export const updateProduct = updateOne(Product);
 
 // Delete the Product
-export const deleteProduct = async (req, res) => {
-  try {
-    await Product.findByIdAndDelete(req.params.id);
-    res
-      .status(200)
-      .json({ status: "success", message: "Product has been deleted..." });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-};
+export const deleteProduct = deleteOne(Product);
 
 // GET the Product
 export const getProduct = async (req, res) => {
