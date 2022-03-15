@@ -15,6 +15,7 @@ export const getAllReviews = async (req, res, next) => {
 export const setProductUserIds = (req, res, next) => {
   if (!req.body.product) req.body.product = req.params.productId;
   if (!req.body.user) req.body.user = req.user.id;
+  console.log(req.body.product);
   next();
 };
 

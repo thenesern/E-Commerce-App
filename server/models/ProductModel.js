@@ -32,6 +32,17 @@ const ProductSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    ratingsAverage: {
+      type: Number,
+      default: 2.5,
+      min: 1,
+      max: 5,
+      set: (val) => Math.round(val * 10) / 10,
+    },
+    ratingsQuantity: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true },
   {
