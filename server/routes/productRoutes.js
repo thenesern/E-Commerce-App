@@ -9,6 +9,12 @@ import {
 import express from "express";
 const router = express.Router();
 
+// Get the Product
+router.get("/:id", getProduct);
+
+//Get all the Products
+router.get("/", getAllProducts);
+
 // Create Product
 router.post("/", verifyTokenAndAdmin, createProduct);
 
@@ -16,13 +22,6 @@ router.post("/", verifyTokenAndAdmin, createProduct);
 router.put("/:id", verifyTokenAndAdmin, updateProduct);
 
 // Delete the Product
-// router.delete("/:id", verifyTokenAndAdmin, deleteProduct);
-router.delete("/:id", deleteProduct);
-
-// Get the Product
-router.get("/:id", getProduct);
-
-//GET ALL PRODUCTS
-router.get("/", getAllProducts);
+router.delete("/:id", verifyTokenAndAdmin, deleteProduct);
 
 export default router;

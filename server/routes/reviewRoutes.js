@@ -11,8 +11,19 @@ import express from "express";
 
 const router = express.Router();
 
-// router.route("/").get(getAllReviews).post(verifyTokenAndAuth, createReview);
-router.route("/").get(getAllReviews).post(setProductUserIds, createReview);
-router.route("/:id").get(getReview).patch(updateReview).delete(deleteReview);
+// Get the Review
+
+router.get("/:id", getReview);
+// Get all the Reviews
+router.get("/", getAllReviews);
+
+// Create a Review
+router.post("/", setProductUserIds, createReview);
+
+// Update the Review
+router.patch("/:id", updateReview);
+
+// Delete the Review
+router.delete(":id", deleteReview);
 
 export default router;

@@ -9,21 +9,19 @@ import {
   getStats,
 } from "../controllers/userController.js";
 
+// Get User
+router.get("/:id", verifyTokenAndAuth, getUser);
+
+// Get All the Users
+router.get("/", verifyTokenAndAdmin, getAllUsers);
+
 // Update
 router.patch("/:id", verifyTokenAndAuth, updateUser);
 
 // Delete
 router.delete("/:id", verifyTokenAndAuth, deleteUser);
 
-// Get User
-// router.get("/:id", verifyTokenAndAdmin, getUser);
-router.get("/:id", getUser);
-
-// Get All the Users
-// router.get("/", verifyTokenAndAdmin, getAllUsers);
-router.get("/", getAllUsers);
-
-//Get the User Stats
+// Get the User Stats
 router.get("/stats", verifyTokenAndAdmin, getStats);
 
 export default router;
