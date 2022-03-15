@@ -5,6 +5,7 @@ import {
   ShoppingCartOutlined,
   AccountCircleRounded,
 } from "@material-ui/icons";
+import LoginIcon from "@mui/icons-material/Login";
 import { Badge } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -40,27 +41,35 @@ const Navbar = () => {
     <div className={styles.container}>
       <div className={styles.wrapper}>
         <div className={styles.left}>
-          <span className={styles.language}>EN</span>
-          <div className={styles["search-container"]}>
-            <input className={styles.input} type="text" />
-            <Search className={styles.search} />
-          </div>
-        </div>
-        <div className={styles.center}>
           <Link to="/" className={styles.link}>
-            <h1>Logo</h1>
+            <h1 className={styles.logo}>LOGO</h1>
           </Link>
         </div>
         <div className={styles.right}>
+          <div className={styles.searchBar}>
+            <div className={styles["search-container"]}>
+              <input
+                className={styles.input}
+                type="text"
+                placeholder="Search"
+              />
+              <Search className={styles.search} />
+            </div>
+          </div>
           {!user && (
-            <>
-              <Link to="/register" className={styles["menu-item"]}>
-                Sign Up
-              </Link>
+            <div className={styles.actions}>
               <Link to="/login" className={styles["menu-item"]}>
-                Sign In
+                <button className={styles.buttonSignIn}>
+                  <LoginIcon style={{ fontSize: "16px" }} />
+                  <span>Sign In</span>
+                </button>
               </Link>
-            </>
+              <Link to="/register" className={styles["menu-item"]}>
+                <button className={styles.buttonSignUp}>
+                  <span>Sign Up</span>
+                </button>
+              </Link>
+            </div>
           )}
           {user && (
             <>

@@ -1,9 +1,10 @@
 .container {
-  height: 5rem;
+  background-color: #ffe8d6;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
 }
 
 .wrapper {
-  padding: 16px 32px;
+  padding: 1rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -13,22 +14,30 @@
   flex: 1;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
 }
 
-.language {
-  font-size: 14px;
-  cursor: pointer;
+.link {
+  text-decoration: none;
+  color: #001219;
 }
 
-.center {
-  flex: 1;
-  text-align: center;
+.logo {
+  font-weight: 700;
 }
+
 .right {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  gap: 2rem;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .search-container {
@@ -36,16 +45,22 @@
   display: flex;
   align-items: center;
   margin-left: 25px;
+  border-radius: 1rem;
 }
 
 .input {
   border: none;
   outline: none;
-  padding: 4px;
+  padding: 8px 4px 8px 12px;
+  border-radius: 1rem 0 0 1rem;
 }
 
-.logo {
-  font-weight: bold;
+.search {
+  color: gray;
+  background-color: white;
+  padding: 4px 4px 4px 0;
+  width: 1rem;
+  border-radius: 0 1rem 1rem 0;
 }
 
 .menu-item {
@@ -57,14 +72,37 @@
   color: black;
 }
 
-.search {
-  color: gray;
-  font-size: 16px;
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.link {
-  text-decoration: none;
-  color: black;
+.buttonSignIn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  justify-content: center;
+  background: transparent;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  padding: 6px 14px;
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+}
+
+.buttonSignUp {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  padding: 6px 14px;
+  cursor: pointer;
+  background-color: #001219;
+  color: white;
+  transition: all 0.3s ease-out;
 }
 
 .profile {
