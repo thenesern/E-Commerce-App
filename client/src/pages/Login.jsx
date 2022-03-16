@@ -15,6 +15,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [signedIn, setSignedIn] = useState("");
   const { isFetching, error } = useSelector((state) => state.auth);
+  const a = useSelector((state) => state.auth);
+  console.log(a);
   const loginHandler = (e) => {
     e.preventDefault();
     setSignedIn(new Date().toLocaleString());
@@ -23,8 +25,8 @@ const Login = () => {
   return (
     <div className={styles.container}>
       <Link to="/" className={styles.closeLink}>
-        <Button variant="text" color="error" className={styles.closeBtn}>
-          X
+        <Button variant="text" color="primary" className={styles.closeBtn}>
+          <span className={styles.close}>X</span>
         </Button>
       </Link>
       <div className={styles.wrapper}>
@@ -37,6 +39,7 @@ const Login = () => {
         </p>
         <form className={styles.form}>
           <TextField
+            required
             type="email"
             label="E-Mail"
             color="secondary"
@@ -44,6 +47,7 @@ const Login = () => {
             className={styles.input}
           />
           <TextField
+            required
             type="password"
             label="Password"
             onChange={(e) => setPassword(e.target.value)}
@@ -54,6 +58,7 @@ const Login = () => {
             disabled={isFetching}
             className={styles.button}
             onClick={loginHandler}
+            type="submit"
           >
             Log In
           </button>

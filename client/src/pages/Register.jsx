@@ -12,32 +12,31 @@ import styles from "./Register.module.css";
 import { useEffect } from "react";
 
 const Register = () => {
-  /*   const [rawFirstName, setRawFirstName] = useState("");
-  const [rawLastName, setRawLastName] = useState(""); */
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [signedIn, setSignedIn] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [signedIn, setSignedIn] = useState("");
+  const [isMarked, setIsMarked] = useState(false);
   const { isFetching, error } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-
+  console.log(isMarked);
   const registeringHandler = (e) => {
     e.preventDefault();
     setSignedIn(new Date().toLocaleString());
 
-    const lowerFirst = firstName.toLowerCase();
-    const betterFirst = lowerFirst.replace(
+    const lowerFirst = firstName?.toLowerCase();
+    const betterFirst = lowerFirst?.replace(
       lowerFirst[0],
-      lowerFirst[0].toUpperCase()
+      lowerFirst[0]?.toUpperCase()
     );
     setFirstName(betterFirst);
 
-    const lowerLast = lastName.toLowerCase();
-    const betterLast = lowerLast.replace(
+    const lowerLast = lastName?.toLowerCase();
+    const betterLast = lowerLast?.replace(
       lowerLast[0],
-      lowerLast[0].toUpperCase()
+      lowerLast[0]?.toUpperCase()
     );
     setLastName(betterLast);
 
@@ -48,14 +47,15 @@ const Register = () => {
       password,
       passwordConfirm,
       signedIn,
+      isMarked,
     });
   };
 
   return (
     <div className={styles.container}>
       <Link to="/" className={styles.closeLink}>
-        <Button variant="text" color="error" className={styles.closeBtn}>
-          X
+        <Button variant="text" color="primary" className={styles.closeBtn}>
+         <span className={styles.close}>X</span>
         </Button>
       </Link>
       <div className={styles.wrapper}>
@@ -117,7 +117,7 @@ const Register = () => {
             </div>
           </div>
           <div className={styles.aggreement}>
-            <Checkbox />
+            <Checkbox onClick={() => setIsMarked(true)} />
             <p>
               I accept the{" "}
               <Link to="/" className={styles.privacy}>

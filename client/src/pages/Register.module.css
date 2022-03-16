@@ -5,6 +5,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  background-color: #ffe8d6;
 }
 
 .wrapper {
@@ -12,6 +13,7 @@
   width: 24rem;
   height: 24rem;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  background-color: #f1faee;
 }
 
 .title {
@@ -30,7 +32,6 @@
 .input {
   flex: 1;
   width: 11rem;
-  margin: 6px 0;
 }
 
 .input_email {
@@ -45,6 +46,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  margin: 4px 0;
 }
 
 .pair {
@@ -107,4 +109,8 @@
 .button:disabled {
   color: green;
   cursor: not-allowed;
+}
+
+.close {
+  font-weight: bold;
 }
