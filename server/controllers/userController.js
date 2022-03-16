@@ -36,6 +36,7 @@ export const register = async (req, res) => {
       email: req.body.email,
       signedIn: req.body.signedIn,
       isMarked: req.body.isMarked,
+      id: newUser._id,
     });
   } catch (err) {
     res.status(409).json({
@@ -80,6 +81,7 @@ export const login = async (req, res) => {
       lastName: user.lastName,
       email: user.email,
       signedIn: user.signedIn,
+      id: user._id,
     });
   } catch (err) {
     res.status(409).json({

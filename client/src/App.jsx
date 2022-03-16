@@ -21,7 +21,7 @@ import Success from "./pages/Success";
 import Cart from "./pages/Cart";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import List from "./pages/Dashboard/Users/Users";
-import User from "./pages/Dashboard/User/User";
+import User from "./pages/User/User";
 import DashboardProducts from "./pages/Dashboard/Products/Products";
 
 function App() {
@@ -33,7 +33,12 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
-        {isUser && <Route path="/success" element={<Success />} />}
+        {isUser && (
+          <>
+            <Route path="/success" element={<Success />} />
+            <Route path="/profile" element={<User />} />
+          </>
+        )}
         {isAdmin && (
           <>
             <Route path="/dashboard" element={<Dashboard />} />

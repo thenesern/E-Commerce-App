@@ -119,17 +119,17 @@ export const updateProduct = async (id, product, dispatch) => {
   }
 };
 
-export const updateUser = async (id, user, dispatch) => {
+export const updateUser = async (dispatch, user) => {
   dispatch(updateUserStart());
   try {
-    // update
-    dispatch(updateUserSuccess({ id, user }));
+    const res = await userRequest.patch(`/users/${user.id}`, user);
+    dispatch(updateUserSuccess(res.data));
   } catch (err) {
     dispatch(updateUserFailure());
   }
 };
 
-export const addProduct = async (product, dispatch) => {
+export const addProduct = async (dispatch, product) => {
   dispatch(addProductStart());
   try {
     const res = await userRequest.post(`/products`, product);
