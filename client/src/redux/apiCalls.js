@@ -34,6 +34,11 @@ import {
   updateUserStart,
   updateUserSuccess,
 } from "./userSlice";
+import {
+  getOrdersFailure,
+  getOrdersStart,
+  getOrdersSuccess,
+} from "./orderSlice";
 
 export const login = async (dispatch, auth) => {
   dispatch(loginStart());
@@ -65,6 +70,15 @@ export const getProducts = async (dispatch) => {
   }
 };
 
+export const getAllOrders = async (dispatch) => {
+  dispatch(getOrdersStart());
+  try {
+    const res = await userRequest.get("/orders");
+    dispatch(getOrdersSuccess(res.data));
+  } catch (err) {
+    dispatch(getOrdersFailure());
+  }
+};
 export const getUsers = async (dispatch) => {
   dispatch(getUserStart());
   try {

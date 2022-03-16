@@ -2,36 +2,49 @@ import mongoose from "mongoose";
 
 const OrderSchema = new mongoose.Schema(
   {
-    useId: {
-      type: String,
+    user: {
+      type: mongoose.Schema.ObjectId,
+      ref: "User",
       required: true,
     },
     product: [
       {
-        productId: {
-          type: String,
-        },
-        quantitiy: {
+        type: mongoose.Schema.ObjectId,
+        ref: "Product",
+        required: true,
+        quantity: {
           type: Number,
           default: 1,
         },
       },
     ],
-    amount: {
+    price: {
       type: Number,
       required: true,
-      address: {
-        type: Object,
-        required: true,
-        status: {
-          type: String,
-          default: "Pending",
-        },
-      },
+    },
+    address: {
+      type: Object,
+      required: true,
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now(),
+    },
+    status: {
+      type: String,
+      default: "Pending",
     },
   },
   { timestamps: true }
 );
+
+OrderSchema.pre(/^find/, function (next) {
+  this.populate("user").populate({
+    path: "product",
+    select: "name",
+  });
+  next();
+});
 
 const Order = mongoose.model("Order", OrderSchema);
 export default Order;

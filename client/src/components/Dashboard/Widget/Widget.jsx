@@ -1,20 +1,37 @@
 import React from "react";
 import styles from "./Widget.module.css";
 import {
+  LocalMall,
   MonetizationOnOutlined,
   PersonOutlined,
   ShoppingCartOutlined,
+  StoreMallDirectoryTwoTone,
 } from "@material-ui/icons";
+
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { getAllOrders } from "../../../redux/apiCalls";
+import { useEffect } from "react";
+
 const Widget = ({ type }) => {
+  const dispatch = useDispatch();
   let data;
 
-  const amount = 12;
+  useEffect(() => {
+    getAllOrders(dispatch);
+  }, [dispatch]);
+
+  const users = useSelector((state) => state.users.users.length);
+  const orders = useSelector((state) => state.orders.orders.data.orders.length);
+  const products = useSelector((state) => state.product.products.length);
+
   switch (type) {
     case "users":
       data = {
         title: "Users",
         isMoney: false,
-        link: "See all the Users",
+        link: "/dashboard/users",
+        amount: users,
         icon: (
           <PersonOutlined
             className={styles.icon}
@@ -27,7 +44,8 @@ const Widget = ({ type }) => {
       data = {
         title: "Orders",
         isMoney: false,
-        link: "See all the Orders",
+        link: "/dashboard/orders",
+        amount: orders,
         icon: (
           <ShoppingCartOutlined
             className={styles.icon}
@@ -40,11 +58,26 @@ const Widget = ({ type }) => {
       data = {
         title: "Earnings",
         isMoney: false,
-        link: "See all the Earnings",
+        link: "/dashboard/earnings",
+        amount: 1111,
         icon: (
           <MonetizationOnOutlined
             className={styles.icon}
             style={{ color: "#606c38" }}
+          />
+        ),
+      };
+      break;
+    case "products":
+      data = {
+        title: "Products",
+        isMoney: false,
+        link: "/dashboard/products",
+        amount: products,
+        icon: (
+          <StoreMallDirectoryTwoTone
+            className={styles.icon}
+            style={{ color: "#001219" }}
           />
         ),
       };
@@ -58,9 +91,11 @@ const Widget = ({ type }) => {
       <div className={styles.left}>
         <h6 className={styles.title}>{data.title}</h6>
         <span className={styles.counter}>
-          {data.isMoney && "$"} {amount}
+          {data.isMoney && "$"} {data.amount}
         </span>
-        <span className={styles.link}>{data.link}</span>
+        <Link to={data.link} className={styles.link}>
+          See all the {data.title}
+        </Link>
       </div>
       <div className={styles.right}>{data.icon}</div>
     </div>

@@ -18,6 +18,7 @@ const Dashboard = () => {
             <Widget type="users" />
             <Widget type="orders" />
             <Widget type="earnings" />
+            <Widget type="products" />
           </div>
           <div className={styles.charts}>
             <Featured />
