@@ -4,21 +4,20 @@ import styles from "./MainMenu.module.css";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
+import { mainMenu } from "../../data";
 import Menu from "@material-ui/core/Menu";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-const theme = createMuiTheme({});
+import { createTheme, ThemeProvider } from "@material-ui/core/styles";
+const theme = createTheme({});
 
 // Styles
 
 const Announcement = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [open, setOpen] = useState(false);
-
   const handleOpen = (event) => {
     setAnchorEl(event.currentTarget);
     setOpen(true);
   };
-
   const handleClose = (e) => {
     if (e.currentTarget.localName !== "ul") {
       const menu = document.getElementById("simple-menu").children[2];
@@ -48,6 +47,7 @@ const Announcement = () => {
       },
     },
   };
+  mainMenu.map((item) => item.subs.map((a) => a.title));
   return (
     <ThemeProvider theme={theme}>
       <Menu
@@ -63,21 +63,21 @@ const Announcement = () => {
           horizontal: "center",
         }}
       >
-        Menu
-        <br />
-        Items
+        {mainMenu.map((item) => item.subs.map((a) => a.title))}
       </Menu>
       <ul className={styles.list}>
-        <Button
-          id="menubutton1"
-          aria-owns={open ? "simple-menu" : null}
-          aria-haspopup="true"
-          onMouseOver={handleOpen}
-          onMouseLeave={handleClose}
-          style={{ zIndex: 1301 }}
-        >
-          Open Menu
-        </Button>
+        {mainMenu.map((item) => (
+          <Button
+            aria-owns={open ? "simple-menu" : null}
+            aria-haspopup="true"
+            onMouseOver={handleOpen}
+            onMouseLeave={handleClose}
+            style={{ zIndex: 1301 }}
+            key={item.title}
+          >
+            {item.title}
+          </Button>
+        ))}
       </ul>
     </ThemeProvider>
   );

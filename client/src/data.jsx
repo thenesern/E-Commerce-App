@@ -43,54 +43,58 @@ export const categories = [
   },
 ];
 
-export const popularProducts = [
+export const mainMenu = [
   {
-    id: 1,
-    title: "Product 1",
-    desc: "Product",
-    image:
-      "https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png",
+    title: "woman",
+    subs: [
+      {
+        title: "jacket",
+        link: "",
+      },
+      {
+        title: "tshirt",
+        link: "",
+      },
+      {
+        title: "loungewear",
+        link: "",
+      },
+    ],
   },
 
   {
-    id: 2,
-    title: "Product 2",
-    desc: "Product",
-    price: 1,
-    image:
-      "https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png",
-  },
-  {
-    id: 3,
-    title: "Product 3",
-    desc: "Product",
-    price: 1,
-    image:
-      "https://www.burdastyle.com/pub/media/catalog/product/cache/7bd3727382ce0a860b68816435d76e26/107/BUS-PAT-BURTE-1320516/1170x1470_BS_2016_05_132_front.png",
-  },
-  {
-    id: 4,
-    title: "Product 4",
-    desc: "Product",
-    price: 1,
-    image:
-      "https://images.ctfassets.net/5gvckmvm9289/3BlDoZxSSjqAvv1jBJP7TH/65f9a95484117730ace42abf64e89572/Noissue-x-Creatsy-Tote-Bag-Mockup-Bundle-_4_-2.png",
-  },
-  {
-    id: 5,
-    title: "Product 5",
-    desc: "Product",
-    price: 1,
-    image:
-      "https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png",
+    title: "man",
+    subs: [
+      {
+        title: "jacket",
+        link: "",
+      },
+      {
+        title: "tshirt",
+        link: "",
+      },
+      {
+        title: "trouser",
+        link: "",
+      },
+    ],
   },
 
   {
-    id: 6,
-    title: "Product 6",
-    desc: "Product",
-    price: 1,
-    image:
-      "https://www.pngarts.com/files/3/Women-Jacket-PNG-High-Quality-Image.png",
+    title: "kids",
+    subs: [
+      {
+        title: "shoe",
+        link: "",
+      },
+      {
+        title: "thirt",
+        link: "",
+      },
+      {
+        title: "hat",
+        link: "",
+      },
+    ],
   },
 ];
