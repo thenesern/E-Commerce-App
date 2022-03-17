@@ -13,6 +13,7 @@ import rateLimit from "express-rate-limit";
 import helmet from "helmet";
 import mongoSanitize from "express-mongo-sanitize";
 import xss from "xss-clean";
+import compression from "compression";
 
 const app = express();
 dotenv.config();
@@ -44,6 +45,7 @@ app.get("/", (req, res) => {
   res.send("Hello");
 });
 app.use(cors());
+app.use(compression());
 
 mongoose
   .connect(`${process.env.DATABASE}`, {
