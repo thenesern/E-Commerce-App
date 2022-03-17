@@ -15,8 +15,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [signedIn, setSignedIn] = useState("");
   const { isFetching, error } = useSelector((state) => state.auth);
-  const a = useSelector((state) => state.auth);
-  console.log(a);
   const loginHandler = (e) => {
     e.preventDefault();
     setSignedIn(new Date().toLocaleString());

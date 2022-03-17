@@ -21,7 +21,9 @@ const Widget = ({ type }) => {
     getAllOrders(dispatch);
   }, [dispatch]);
 
-  const users = useSelector((state) => state.users.users.length);
+  const users = useSelector(
+    (state) => state.users.users.filter((user) => user.isAdmin === false).length
+  );
   const orders = useSelector((state) => state.orders.orders.data.orders.length);
   const products = useSelector((state) => state.product.products.length);
 

@@ -49,13 +49,10 @@ const ProductTable = () => {
   const handleClose = () => setOpen(false);
   const sureClose = () => setIsSure(false);
 
-  useEffect(() => {
-    getProducts(dispatch);
-  }, [dispatch]);
-
   const handleDelete = (id) => {
     deleteProduct(id, dispatch);
   };
+
   const columns = [
     { field: "_id", headerName: "ID", width: 220 },
     {
