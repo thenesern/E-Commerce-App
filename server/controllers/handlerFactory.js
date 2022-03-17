@@ -39,7 +39,7 @@ export const createOne = (Model) => async (req, res) => {
 
     res.status(200).json({ status: "success", data: { data: doc } });
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json({ status: "fail", message: err.message });
   }
 };
 

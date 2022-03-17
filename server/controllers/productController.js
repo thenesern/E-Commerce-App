@@ -1,8 +1,28 @@
 import Product from "../models/ProductModel.js";
-import { createOne, deleteOne, updateOne } from "./handlerFactory.js";
+import { deleteOne, updateOne } from "./handlerFactory.js";
 
 // Create Product
-export const createProduct = createOne(Product);
+export const createProduct = async (req, res) => {
+  const newProduct = new Product({
+    title: req.body.name,
+    desc: req.body.description,
+    img: req.body.img,
+    categories: req.body.categories,
+    size: req.body.sizes,
+    color: req.body.colors,
+    price: req.body.price,
+    inStock: req.body.stock,
+    img: "null",
+  });
+
+  console.log(newProduct);
+  try {
+    const savedProduct = await newProduct.save();
+    res.status(200).json({ status: "success", data: { savedProduct } });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
 
 // Update the Product
 export const updateProduct = updateOne(Product);

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 // Styles
 import styles from "./ProductList.module.css";
-import Announcement from "../components/Announcement/Announcement";
+import Announcement from "../components/MainMenu/MainMenu";
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
 import Products from "../components/Products/Products";

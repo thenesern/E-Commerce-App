@@ -3,6 +3,7 @@ import CryptoJS from "crypto-js";
 import crypto from "crypto";
 import jwt from "jsonwebtoken";
 import { deleteOne, getOne, updateOne } from "./handlerFactory.js";
+/* import { Email } from "../utils/email.js"; */
 
 export const register = async (req, res) => {
   const newUser = new User({
@@ -27,6 +28,9 @@ export const register = async (req, res) => {
 
   try {
     await newUser.save();
+    const url = "http://localhost:5000/";
+    /*   await new Email(newUser, url).sendWelcome(); */
+
     res.status(201).json({
       status: "success",
       token,

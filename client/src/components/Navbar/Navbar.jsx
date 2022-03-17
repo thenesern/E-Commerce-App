@@ -1,21 +1,19 @@
 // Dependencies
+import styles from "./Navbar.module.css";
 import React from "react";
-import {
-  Search,
-  ShoppingCartOutlined,
-  AccountCircleRounded,
-} from "@material-ui/icons";
+import { ShoppingCartOutlined, AccountCircleRounded } from "@material-ui/icons";
 import LoginIcon from "@mui/icons-material/Login";
 import { Badge } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 import Fade from "@mui/material/Fade";
 import { logout } from "../../redux/authSlice";
+import MainMenu from "../MainMenu/MainMenu";
 // Styles
-import styles from "./Navbar.module.css";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { useState } from "react";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -23,8 +21,8 @@ const Navbar = () => {
   const admin = useSelector((state) => state.auth.currentUser?.isAdmin);
   const firstName = useSelector((state) => state.auth.currentUser?.firstName);
   const lastName = useSelector((state) => state.auth.currentUser?.lastName);
-  const quantity = useSelector((state) => state.cart.quantity);
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const quantity = useSelector((state) => state.cart?.quantity);
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
@@ -45,8 +43,11 @@ const Navbar = () => {
             <h1 className={styles.logo}>LOGO</h1>
           </Link>
         </div>
+        <div className={styles.center}>
+          <MainMenu />
+        </div>
         <div className={styles.right}>
-          <div className={styles.searchBar}>
+          {/*  <div className={styles.searchBar}>
             <div className={styles["search-container"]}>
               <input
                 className={styles.input}
@@ -55,7 +56,7 @@ const Navbar = () => {
               />
               <Search className={styles.search} />
             </div>
-          </div>
+          </div> */}
           {!user && (
             <div className={styles.actions}>
               <Link to="/login" className={styles["menu-item"]}>
@@ -83,9 +84,7 @@ const Navbar = () => {
               >
                 <AccountCircleRounded />
                 <h6 className={styles.username}>
-                  <p>
-                    {firstName} {lastName}
-                  </p>
+                  {firstName} {lastName}
                 </h6>
               </Button>
               <Menu
@@ -97,21 +96,25 @@ const Navbar = () => {
                 open={open}
                 onClose={handleClose}
                 TransitionComponent={Fade}
+                className={styles.menuList}
               >
                 {admin && (
                   <Link to="/dashboard" className={styles["menu-link"]}>
-                    <MenuItem className={styles["menu-link"]}>
-                      Dashboard
-                    </MenuItem>
+                    <span className={styles["link-item"]}>Dashboard</span>
                   </Link>
                 )}
-                <Link to="/" className={styles["menu-link"]}>
-                  <MenuItem
-                    onClick={logoutHandler}
-                    className={styles["menu-link"]}
-                  >
-                    Log out
-                  </MenuItem>
+                {user && !admin && (
+                  <Link to="/profile" className={styles["menu-link"]}>
+                    <span className={styles["link-item"]}>Profile</span>
+                  </Link>
+                )}
+                <Link
+                  to="/"
+                  className={styles["menu-link"]}
+                  onClick={logoutHandler}
+                >
+                  <span className={styles["link-item"]}>Log out</span>
+                  <LogoutIcon className={styles.icon} />
                 </Link>
               </Menu>
             </>

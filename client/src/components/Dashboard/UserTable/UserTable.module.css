@@ -1,17 +1,18 @@
 .datatable {
-  padding: 0 20px;
-  height: 85vh;
+  padding: 1rem 20px;
+  height: 90%;
 }
 
 .datatableTitle {
   width: 100%;
   font-size: 24px;
-  color: gray;
+  color: #001219;
   margin-bottom: 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-weight: 600;
+  font-weight: bold;
+  padding: 4px 0;
 }
 
 .link {

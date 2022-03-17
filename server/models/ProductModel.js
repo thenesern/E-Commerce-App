@@ -13,7 +13,7 @@ const ProductSchema = new mongoose.Schema(
     },
     img: {
       type: String,
-      required: true,
+      /*  required: true, */
     },
     categories: {
       type: Array,
@@ -29,8 +29,9 @@ const ProductSchema = new mongoose.Schema(
       required: true,
     },
     inStock: {
-      type: Boolean,
-      default: true,
+      type: Number,
+      required: true,
+      default: 1,
     },
     ratingsAverage: {
       type: Number,

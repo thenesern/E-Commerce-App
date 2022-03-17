@@ -157,7 +157,6 @@ const UserTable = () => {
       <div className={styles.datatableTitle}>User List</div>
       <DataGrid
         rows={users}
-        className={styles.datagrid}
         columns={columns}
         getRowId={(row) => row._id}
         pageSize={9}
