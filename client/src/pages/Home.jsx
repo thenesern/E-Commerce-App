@@ -1,7 +1,6 @@
 // Dependencies
 import React from "react";
 // Components
-import Announcement from "../components/Announcement/Announcement";
 import Categories from "../components/Categories/Categories";
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
@@ -12,12 +11,15 @@ import Slider from "../components/Slider/Slider";
 const Home = () => {
   return (
     <div>
-      <Navbar />
-      <Announcement />
-      <Slider />
-      <Categories />
-      <Newsletter />
-      <Footer />
+      <div>
+        <Navbar style={{ height: "90vh" }} />
+        <Slider style={{ height: "10vh" }} />
+      </div>
+      <div style={{ marginTop: "5%" }}>
+        <Categories />
+        <Newsletter />
+        <Footer />
+      </div>
     </div>
   );
 };

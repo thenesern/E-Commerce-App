@@ -7,7 +7,7 @@ import { sliderItems } from "../../data";
 import { useState } from "react";
 // Styles
 import styles from "./Slider.module.css";
-import sliderImage from "../../assets/slider-image.png";
+import sliderImage from "../../assets/img/slider-image.png";
 
 const Slider = () => {
   const [slideIndex, setSlideIndex] = useState(0);
