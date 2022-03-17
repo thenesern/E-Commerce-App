@@ -1,7 +1,5 @@
 import styles from "./User.module.css";
-import Sidebar from "../../components/Dashboard/SideBar/SideBar";
 import Navbar from "../../components/Navbar/Navbar";
-import Chart from "../../components/Dashboard/Chart/Chart";
 import List from "../../components/Dashboard/Table/Table";
 import { useDispatch, useSelector } from "react-redux";
 import { TextField } from "@material-ui/core";
@@ -14,6 +12,7 @@ const User = () => {
   const [lastName, setLastName] = useState(profile.lastName);
   const [isChanged, setIsChanged] = useState(false);
   const dispatch = useDispatch();
+
   const firstNameChangeHandler = (e) => {
     setFirstName(e.target.value);
   };

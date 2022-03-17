@@ -23,6 +23,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import List from "./pages/Dashboard/Users/Users";
 import User from "./pages/User/User";
 import DashboardProducts from "./pages/Dashboard/Products/Products";
+import SingleUser from "./pages/Dashboard/SingleUser/SingleUser";
 
 function App() {
   const isUser = useSelector((state) => state.auth.currentUser?.token);
@@ -43,7 +44,7 @@ function App() {
           <>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/dashboard/products" element={<DashboardProducts />} />
-            <Route path="/dashboard/users/:userId" element={<User />} />
+            <Route path="/dashboard/users/:userId" element={<SingleUser />} />
             <Route path="/dashboard/users" element={<List />} />
           </>
         )}

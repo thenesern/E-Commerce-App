@@ -10,11 +10,14 @@ import { useState } from "react";
 
 const UserTable = () => {
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.users.users);
+  const users = useSelector((state) =>
+    state.users.users.filter((user) => user.isAdmin === false)
+  );
   const [id, setId] = useState();
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [isAdmin, setIsAdmin] = useState(false);
+
   useEffect(() => {
     getUsers(dispatch);
   }, [dispatch]);
@@ -86,7 +89,7 @@ const UserTable = () => {
         return (
           <div className={styles.actions}>
             <Link
-              to="/dashboard/users/:userId"
+              to={`/dashboard/users/${params.row._id}`}
               style={{ textDecoration: "none" }}
             >
               <button className={styles.viewButton}>
@@ -112,6 +115,7 @@ const UserTable = () => {
     },
   ];
   const [open, setOpen] = useState(false);
+  const [pageSize, setPageSize] = useState(5);
 
   const handleClose = () => setOpen(false);
   return (
@@ -159,8 +163,11 @@ const UserTable = () => {
         rows={users}
         columns={columns}
         getRowId={(row) => row._id}
-        pageSize={9}
         disableSelectionOnClick
+        pageSize={pageSize}
+        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+        rowsPerPageOptions={[5, 10, 20]}
+        pagination
       />
     </div>
   );

@@ -21,7 +21,4 @@ router.patch("/:id", verifyTokenAndAuth, updateUser);
 // Delete
 router.delete("/:id", verifyTokenAndAuth, deleteUser);
 
-// Get the User Stats
-router.get("/stats", verifyTokenAndAdmin, getStats);
-
 export default router;
